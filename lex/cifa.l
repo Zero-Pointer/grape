@@ -1,6 +1,6 @@
 
 /* 把注释去掉 */
-// hi
+//
 %{
 #include <iostream>
 #include <stdio.h>
