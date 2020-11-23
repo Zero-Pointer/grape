@@ -2,7 +2,7 @@
 //#include <boost/variant.hpp>
 #include "source/TableNode.h"
 using namespace std;
-using namespace boost;
+//using namespace boost;
 
 
 int main() {
