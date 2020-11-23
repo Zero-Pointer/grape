@@ -17,7 +17,7 @@ int main() {
         } else if (nextChar == 'a') {
             string id;
             cout << "Please Id : ";
-            cin >> id;
+            cin >> id; 
             int* valuePtr = globalPtr->addChar(id);
             if(valuePtr == nullptr){
                 cout<<"Redefined"<<endl;
