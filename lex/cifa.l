@@ -1,8 +1,7 @@
 
 /* 把注释去掉 */
-//
-%{
-#include <iostream>
+
+#ie <iostream>
 #include <stdio.h>
 #include "../source/StaticFlags.h"
 using namespace std;
