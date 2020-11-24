@@ -487,7 +487,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "lex.yy.cpp"
 /* 把注释去掉 */
-#line 5 "cifa.l"
+#line 5 "syntax.l"
 #include <iostream>
 #include <stdio.h>
 #include "../source/StaticFlags.h"
@@ -719,7 +719,7 @@ YY_DECL
 		}
 
 	{
-#line 27 "cifa.l"
+#line 27 "syntax.l"
 
 
 #line 726 "lex.yy.c"
@@ -781,176 +781,176 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 29 "cifa.l"
+#line 29 "syntax.l"
 {BEGIN COMMENT;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 30 "cifa.l"
+#line 30 "syntax.l"
 {BEGIN INITIAL;}
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 31 "cifa.l"
+#line 31 "syntax.l"
 {;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 32 "cifa.l"
+#line 32 "syntax.l"
 {BEGIN COMMENT2;}
 	YY_BREAK
 case 5:
 /* rule 5 can match eol */
 YY_RULE_SETUP
-#line 33 "cifa.l"
+#line 33 "syntax.l"
 {BEGIN INITIAL;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 34 "cifa.l"
+#line 34 "syntax.l"
 {;}
 	YY_BREAK
 /* ECHO是一个宏，相当于 fprintf(yyout, "%s", yytext)*/
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
-#line 38 "cifa.l"
+#line 38 "syntax.l"
 {;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 39 "cifa.l"
+#line 39 "syntax.l"
 {return (VOID);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 40 "cifa.l"
+#line 40 "syntax.l"
 {return (WHILE);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 41 "cifa.l"
+#line 41 "syntax.l"
 {return (TYPE);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 42 "cifa.l"
+#line 42 "syntax.l"
 {return (FOR);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 43 "cifa.l"
+#line 43 "syntax.l"
 {return (DO);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 44 "cifa.l"
+#line 44 "syntax.l"
 {return (IF);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 45 "cifa.l"
+#line 45 "syntax.l"
 {return (ELSE);}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 46 "cifa.l"
+#line 46 "syntax.l"
 {return (MAIN);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 47 "cifa.l"
+#line 47 "syntax.l"
 {return (ID);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 48 "cifa.l"
+#line 48 "syntax.l"
 {return (NUMBER);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 49 "cifa.l"
+#line 49 "syntax.l"
 {return (RELOP);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 50 "cifa.l"
+#line 50 "syntax.l"
 {return (RELOP);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 51 "cifa.l"
+#line 51 "syntax.l"
 {return (RELOP);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 52 "cifa.l"
+#line 52 "syntax.l"
 {return (RELOP);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 53 "cifa.l"
+#line 53 "syntax.l"
 {return (RELOP);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 54 "cifa.l"
+#line 54 "syntax.l"
 {return (RELOP);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 55 "cifa.l"
+#line 55 "syntax.l"
 {return (LP);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 56 "cifa.l"
+#line 56 "syntax.l"
 {return (RP);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 57 "cifa.l"
+#line 57 "syntax.l"
 {return (LSPACE);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 58 "cifa.l"
+#line 58 "syntax.l"
 {return (RSPACE);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 59 "cifa.l"
+#line 59 "syntax.l"
 {return (RELOP);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 60 "cifa.l"
+#line 60 "syntax.l"
 {return (RELOP);}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 61 "cifa.l"
+#line 61 "syntax.l"
 {return (RELOP);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 62 "cifa.l"
+#line 62 "syntax.l"
 {return (RELOP);}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 63 "cifa.l"
+#line 63 "syntax.l"
 {return (RBRACE);}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 65 "cifa.l"
+#line 65 "syntax.l"
 {return ERRORCHAR;}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 68 "cifa.l"
+#line 68 "syntax.l"
 ECHO;
 	YY_BREAK
 #line 957 "lex.yy.c"
@@ -1960,7 +1960,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 68 "cifa.l"
+#line 68 "syntax.l"
 
 
 
