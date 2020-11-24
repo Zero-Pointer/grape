@@ -2,7 +2,7 @@
 /* 把注释去掉 */
 
 %{
-#include <ioeam>
+#include <iostream>
 #include <stdio.h>
 #include "../source/StaticFlags.h"
 using namespace std;
