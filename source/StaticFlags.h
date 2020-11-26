@@ -36,6 +36,14 @@ enum {
 
     FOR,
     TYPE,
+    VOID,
+    LP,
+    MAIN,
+    RP,
+    LSPACE,
+    RSPACE,
+    RBRACE,
+
 
 
     // Type check
