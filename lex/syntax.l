@@ -1,6 +1,6 @@
 
 /* 把注释去掉 */
-
+//mch from chen
 %{
 #include <iostream>
 #include <stdio.h>
