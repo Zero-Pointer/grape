@@ -876,7 +876,7 @@ YY_RULE_SETUP
 case 19:
 YY_RULE_SETUP
 #line 49 "syntax.l"
-{return (RELOP);}
+{return (EQ);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
@@ -1994,7 +1994,9 @@ void writeout(int c){
     case VOID : fprintf(yyout,"(VOID,\"%s\")", yytext);break;
     case TYPE : fprintf(yyout,"(TYPE,\"%s\")", yytext);break;
     case FOR : fprintf(yyout,"(for,\"%s\"\n)", yytext);break;
-
+    case LP: fprintf(yyout,"(LP,\"%s\")",yytext);break;
+    case RP: fprintf(yyout,"(RP,\"%s\")",yytext);break;
+    case EQ: fprintf(yyout,"(EQ,\"%s\")",yytext);break;
     default:break;
   }
   return;
