@@ -6,20 +6,9 @@
 #define LEXICALANALYSIS1_0_STATICFLAGS_H
 
 enum {
-    LT,
-    GT,
-    EQ,
-    LE,
-    NE,
-    GE,
-    LLK,
-    RLK,
-    LBK,
-    RBK,
+    ASSIGN,
     IF,
     ELSE,
-    EQU,
-    SEM,
 
     WHILE,
     DO,

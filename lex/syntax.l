@@ -1,6 +1,5 @@
 
 /* 把注释去掉 */
-//mch from chen
 %{
 #include <iostream>
 #include <stdio.h>
@@ -17,7 +16,7 @@ ws			{delim}+
 letter	[A-Za-z_]
 digit		[0-9]
 id			{letter}({letter}|{digit})*
-number	{digit}+(\.{digit}+)?(E[+-]?{digit}+)?
+number	{digit}+(.{digit}+)?(E[+-]?{digit}+)?
 
 /* 状态（或条件）定义可以定义在这里
  * INITIAL是一个默认的状态，不需要定义
@@ -46,7 +45,7 @@ number	{digit}+(\.{digit}+)?(E[+-]?{digit}+)?
 <INITIAL>{number}	      {return (NUMBER);}
 <INITIAL>"<"	          {return (RELOP);}
 <INITIAL>"<="	          {return (RELOP);}
-<INITIAL>"="	          {return (EQ);}
+<INITIAL>"="	          {return (ASSIGN);}
 <INITIAL>"!="	          {return (RELOP);}
 <INITIAL>">"	          {return (RELOP);}
 <INITIAL>">="	          {return (RELOP);}
@@ -87,7 +86,7 @@ void writeout(int c){
     case DO: fprintf(yyout, "(DO, \"%s\") ", yytext);break;
     case IF: fprintf(yyout, "(IF, \"%s\") ", yytext);break;
     case ELSE: fprintf(yyout, "(ELSE, \"%s\") ", yytext);break;
-    case NUMBER: fprintf(yyout, "(NUM, \"%s\",\"%s\") ", yytext);break;
+    case NUMBER: fprintf(yyout, "(NUM, \"%s\") ", yytext);break;
     case ID:
 	valuePtr = globalPtr->addChar(string(yytext));
     if(valuePtr == nullptr){
@@ -103,7 +102,7 @@ void writeout(int c){
     case FOR : fprintf(yyout,"(for,\"%s\"\n)", yytext);break;
     case LP: fprintf(yyout,"(LP,\"%s\")",yytext);break;
     case RP: fprintf(yyout,"(RP,\"%s\")",yytext);break;
-    case EQ: fprintf(yyout,"(EQ,\"%s\")",yytext);break;
+    case ASSIGN: fprintf(yyout,"(ASSIGN,\"%s\")",yytext);break;
     default:break;
   }
   return;
