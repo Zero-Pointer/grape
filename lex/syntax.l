@@ -3,6 +3,7 @@
 %{
 #include <iostream>
 #include <stdio.h>
+#include <string>
 #include "../source/StaticFlags.h"
 using namespace std;
 #include "../source/TableNode.h"
@@ -24,6 +25,7 @@ number	    {digit}+(\.{digit}+)?(E[+-]?{digit}+)?
 %s COMMENT
 %s COMMENT2
 %s TRANS_PARAS
+%s TYPE_DEF
 %%INITIAL>"/*"			  {BEGIN COMMENT;}
 <COMMENT>"*/"			  {BEGIN INITIAL;}
 <COMMENT>.|\n			  {;}
@@ -31,8 +33,8 @@ number	    {digit}+(\.{digit}+)?(E[+-]?{digit}+)?
 <COMMENT2>\n			  {BEGIN INITIAL;}
 <COMMENT2>.				  {;}
 <INITIAL>{ws}	          {;}
-<INITIAL>void             {return (VOID);}
-<INITIAL>int               {return (TYPE);}
+<INITIAL,TRANS_PARAS>void             {return (VOID);}
+<INITIAL,TRANS_PARAS>int               {return (TYPE);}
 <INITIAL>while              {BEGIN TRANS_PARAS;     return (WHILE);}
 <INITIAL>for                {BEGIN TRANS_PARAS;     return (FOR);}
 <INITIAL>do		          {return (DO);}
@@ -41,28 +43,29 @@ number	    {digit}+(\.{digit}+)?(E[+-]?{digit}+)?
 <TRANS_PARAS>";"            {BEGIN INITIAL;     return (IP_SEMICOLON);}
 <INITIAL>else		          {return (ELSE);}
 <INITIAL>main             {return (MAIN);}
-<INITIAL>{id}	          {return (ID);}
-<INITIAL>{number}	      {return (NUMBER);}
-<INITIAL>"<"	          {return (LET);}
-<INITIAL>"<="	          {return (LEET);}
-<INITIAL>"="	          {return (ASSGIN);}
-<INITIAL>">"	          {return (MOT);}
-<INITIAL>">="	          {return (MOET);}
-<INITIAL>"=="               {return (EQU);}
-<INITIAL>"!="	          {return (NEQU);}
-<INITIAL>"("	          {return (LP);}
-<INITIAL>")"	          {return (RP);}
+<INITIAL,TRANS_PARAS>{id}	          {return (ID);}
+<INITIAL,TRANS_PARAS>{number}	      {return (NUMBER);}
+<INITIAL,TRANS_PARAS>"<"	          {return (LET);}
+<INITIAL,TRANS_PARAS>"<="	          {return (LEET);}
+<INITIAL,TRANS_PARAS>"="	          {return (ASSGIN);}
+<INITIAL,TRANS_PARAS>">"	          {return (MOT);}
+<INITIAL,TRANS_PARAS>">="	          {return (MOET);}
+<INITIAL,TRANS_PARAS>"=="               {return (EQU);}
+<INITIAL,TRANS_PARAS>"!="	          {return (NEQU);}
+<INITIAL,TRANS_PARAS>"("	          {return (LP);}
+<INITIAL,TRANS_PARAS>")"	          {return (RP);}
 <INITIAL>"{"	          {return (LSPACE);}
 <INITIAL>"}"	          {return (RSPACE);}
-<INITIAL>"+"	          {return (ADD);}
-<INITIAL>"-"	          {return (DEC);}
-<INITIAL>"*"	          {return (MUL);}
-<INITIAL>"/"	          {return (DIV);}
-<INITIAL>";"	          {return (SEMICOLON);}
-<INITIAL>"&"	          {return (AND);}
-<INITIAL>"||"	          {return (OR);}
-<INITIAL>"%"	          {return (MOD);}
-<INITIAL>"^"	          {return (MI);}
+<INITIAL,TRANS_PARAS>"+"	          {return (ADD);}
+<INITIAL,TRANS_PARAS>"-"	          {return (DEC);}
+<INITIAL,TRANS_PARAS>"*"	          {return (MUL);}
+<INITIAL,TRANS_PARAS>"/"	          {return (DIV);}
+<INITIAL,TRANS_PARAS>";"	          {return (SEMICOLON);}
+<INITIAL,TRANS_PARAS>"&&"	          {return (AND);}
+<INITIAL,TRANS_PARAS>"||"	          {return (OR);}
+<INITIAL,TRANS_PARAS>"%"	          {return (MOD);}
+<INITIAL,TRANS_PARAS>"^"	          {return (MI);}
+<INITIAL,TRANS_PARAS>","              {return (COMMA);}
 <INITIAL>.							{return ERRORCHAR;}
 
 
@@ -78,62 +81,64 @@ int yywrap (){
 void writeout(int c){
 	int* valuePtr;
   switch(c){
-	case LSPACE: fprintf(yyout, "(LSPACE, \"%s\") ", yytext);
+	case LSPACE: fprintf(yyout, "LSPACE, \"%s\"\n", yytext);
 	globalPtr =globalPtr->addChild();
 	break;
-	case IP_LSPACE: fprintf(yyout, "(IP_LSPACE, \"%s\")", yytext);
+	case IP_LSPACE: fprintf(yyout, "IP_LSPACE, \"%s\"\n", yytext);
 	break;
-    case RSPACE: fprintf(yyout, "(LSPACE, \"%s\") ", yytext);
+    case RSPACE: fprintf(yyout, "LSPACE, \"%s\"\n", yytext);
 	globalPtr =globalPtr->deleteSelf();
 	break;
-	case IP_SEMICOLON:fprintf(yyout, "(IP_LSPACE, \"%s\")", yytext);
+	case IP_SEMICOLON:fprintf(yyout, "IP_LSPACE, \"%s\"\n", yytext);
 	globalPtr =globalPtr->deleteSelf();
 	break;
-  	case ERRORCHAR: fprintf(yyout, "(ERRORCHAR, \"%s\") ", yytext);break;
-    case MAIN: fprintf(yyout, "(MAIN, \"%s\") ", yytext);break;
-  	case RELOP: fprintf(yyout, "(RELOP, \"%s\") ", yytext);break;
-    case WHILE: fprintf(yyout, "(WHILE, \"%s\") ", yytext);
+  	case ERRORCHAR: fprintf(yyout, "ERRORCHAR, \"%s\"\n", yytext);break;
+    case MAIN: fprintf(yyout, "MAIN, \"%s\"\n", yytext);break;
+  	case RELOP: fprintf(yyout, "RELOP, \"%s\"\n", yytext);break;
+    case WHILE: fprintf(yyout, "WHILE, \"%s\"\n", yytext);
     globalPtr = globalPtr->addChild();
     break;
-    case DO: fprintf(yyout, "(DO, \"%s\") ", yytext);break;
-    case IF: fprintf(yyout, "(IF, \"%s\") ", yytext);
+    case DO: fprintf(yyout, "DO, \"%s\"\n", yytext);break;
+    case IF: fprintf(yyout, "IF, \"%s\"\n", yytext);
     globalPtr = globalPtr->addChild();
     break;
-    case ELSE: fprintf(yyout, "(ELSE, \"%s\") ", yytext);break;
-    case FOR : fprintf(yyout,"(for,\"%s\"\n)", yytext);
+    case ELSE: fprintf(yyout, "ELSE, \"%s\"\n", yytext);break;
+    case FOR : fprintf(yyout,"FOR,\"%s\"\n", yytext);
     globalPtr = globalPtr->addChild();
     break;
-    case NUMBER: fprintf(yyout, "(NUM, \"%s\") ", yytext);break;
+    case NUMBER: fprintf(yyout, "NUM, \"%s\"\"%d\"\n", yytext, atoi(yytext));break;
     case ID:
 	valuePtr = globalPtr->addChar(string(yytext));
     if(valuePtr == nullptr){
                 cout<<"Redefined"<<endl;
                 break;
             }
-    fprintf(yyout, "(ID, \"%s\") ", yytext);
-	fprintf(yyout, "%ld\n", valuePtr);
+    fprintf(yyout, "ID, \"%s\"", yytext);
+	fprintf(yyout, "%ld\n", (long int)valuePtr);
 	break;
     case NEWLINE: fprintf(yyout, "\n");break;
-    case VOID : fprintf(yyout,"(VOID,\"%s\")", yytext);break;
-    case TYPE : fprintf(yyout,"(TYPE,\"%s\")", yytext);break;
-    case LP: fprintf(yyout,"(LP,\"%s\")",yytext);break;
-    case RP: fprintf(yyout,"(RP,\"%s\")",yytext);break;
-    case ASSGIN: fprintf(yyout,"(ASSGIN,\"%s\")",yytext);break;
-    case SEMICOLON: fprintf(yyout,"(SEMICOLON,\"%s\")",yytext);break;
-    case LET: fprintf(yyout,"(LET,\"%s\")",yytext);break;
-    case MOT: fprintf(yyout,"(MOT,\"%s\")",yytext);break;
-    case LEET: fprintf(yyout,"(LEET,\"%s\")",yytext);break;
-    case MOET: fprintf(yyout,"(MOET,\"%s\")",yytext);break;
-    case EQU: fprintf(yyout,"(EQU,\"%s\")",yytext);break;
-    case NEQU: fprintf(yyout,"(NEQU,\"%s\")",yytext);break;
-    case ADD: fprintf(yyout,"(ADD,\"%s\")",yytext);break;
-    case DEC: fprintf(yyout,"(DEC,\"%s\")",yytext);break;
-    case MUL: fprintf(yyout,"(MUL,\"%s\")",yytext);break;
-    case DIV: fprintf(yyout,"(DIV,\"%s\")",yytext);break;
-    case AND: fprintf(yyout,"(AND,\"%s\")",yytext);break;
-    case OR: fprintf(yyout,"(OR,\"%s\")",yytext);break;
-    case MOD: fprintf(yyout,"(MOD,\"%s\")",yytext);break;
-     case MI: fprintf(yyout,"(MI,\"%s\")",yytext);break;
+    case VOID : fprintf(yyout,"VOID,\"%s\"\n", yytext);break;
+    case TYPE : fprintf(yyout,"TYPE,\"%s\"\n", yytext);break;
+    case LP: fprintf(yyout,"LP,\"%s\"\n",yytext);break;
+    case RP: fprintf(yyout,"RP,\"%s\"\n",yytext);break;
+    case ASSGIN: fprintf(yyout,"ASSGIN,\"%s\"\n",yytext);break;
+    case SEMICOLON: fprintf(yyout,"SEMICOLON,\"%s\"\n",yytext);break;
+    case LET: fprintf(yyout,"LET,\"%s\"\n",yytext);break;
+    case MOT: fprintf(yyout,"MOT,\"%s\"\n",yytext);break;
+    case LEET: fprintf(yyout,"LEET,\"%s\"\n",yytext);break;
+    case MOET: fprintf(yyout,"MOET,\"%s\"\n",yytext);break;
+    case EQU: fprintf(yyout,"EQU,\"%s\"\n",yytext);break;
+    case NEQU: fprintf(yyout,"NEQU,\"%s\"\n",yytext);break;
+    case ADD: fprintf(yyout,"ADD,\"%s\"\n",yytext);break;
+    case DEC: fprintf(yyout,"DEC,\"%s\"\n",yytext);break;
+    case MUL: fprintf(yyout,"MUL,\"%s\"\n",yytext);break;
+    case DIV: fprintf(yyout,"DIV,\"%s\"\n",yytext);break;
+    case AND: fprintf(yyout,"AND,\"%s\"\n",yytext);break;
+    case OR: fprintf(yyout,"OR,\"%s\"\n",yytext);break;
+    case MOD: fprintf(yyout,"MOD,\"%s\"\n",yytext);break;
+    case MI: fprintf(yyout,"MI,\"%s\"\n",yytext);break;
+    case COMMA: fprintf(yyout,"COMMA,\"%s\"\n",yytext);break;
+
     default:break;
   }
   return;

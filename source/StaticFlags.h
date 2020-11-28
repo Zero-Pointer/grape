@@ -57,6 +57,8 @@ enum {
     //Trans parameter state
     IP_LSPACE,
     IP_SEMICOLON,
+
+    COMMA
 };
 enum TYPE_ENUM{
     // Type const
