@@ -31,7 +31,7 @@ enum {
     RP,
     LSPACE,
     RSPACE,
-    RBRACE,
+    SEMICOLON,
 
 
 
@@ -39,6 +39,10 @@ enum {
     TYPE_NOT_MATCH,
     TYPE_NOT_SUPPORT,
     TYPE_MATCH,
+
+    //Trans parameter state
+    IP_LSPACE,
+    IP_SEMICOLON,
 };
 enum TYPE_ENUM{
     // Type const

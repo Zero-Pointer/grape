@@ -13,7 +13,7 @@ auto* globalPtr = new TableNode();
 
 delim		[ \t \n]
 ws			{delim}+
-letter	[A-Za-z_]
+letter	    [A-Za-z_]
 digit		[0-9]
 id			{letter}({letter}|{digit})*
 number	{digit}+(.{digit}+)?(E[+-]?{digit}+)?
@@ -23,22 +23,25 @@ number	{digit}+(.{digit}+)?(E[+-]?{digit}+)?
  */
 %s COMMENT
 %s COMMENT2
-%%INITIAL>"/*"						{BEGIN COMMENT;}
-<COMMENT>"*/"						{BEGIN INITIAL;}
-<COMMENT>.|\n						{;}
-<INITIAL>"//"						{BEGIN COMMENT2;}
-<COMMENT2>\n					{BEGIN INITIAL;}
-<COMMENT2>.					{;}
+%s TRANS_PARAS
+%%INITIAL>"/*"			  {BEGIN COMMENT;}
+<COMMENT>"*/"			  {BEGIN INITIAL;}
+<COMMENT>.|\n			  {;}
+<INITIAL>"//"			  {BEGIN COMMENT2;}
+<COMMENT2>\n			  {BEGIN INITIAL;}
+<COMMENT2>.				  {;}
 
  /* ECHO是一个宏，相当于 fprintf(yyout, "%s", yytext)*/
 
 <INITIAL>{ws}	          {;}
 <INITIAL>void             {return (VOID);}
-<INITIAL>while					{return (WHILE);}
 <INITIAL>int               {return (TYPE);}
-<INITIAL>for                    {return (FOR);}
+<INITIAL>while              {BEGIN TRANS_PARAS;     return (WHILE);}
+<INITIAL>for                {BEGIN TRANS_PARAS;     return (FOR);}
 <INITIAL>do		          {return (DO);}
-<INITIAL>if		          {return (IF);}
+<INITIAL>if		          {BEGIN TRANS_PARAS; return (IF);}
+<TRANS_PARAS>"{"            {BEGIN INITIAL;     return (IP_LSPACE);}
+<TRANS_PARAS>";"            {BEGIN INITIAL;     return (IP_SEMICOLON);}
 <INITIAL>else		          {return (ELSE);}
 <INITIAL>main             {return (MAIN);}
 <INITIAL>{id}	          {return (ID);}
@@ -57,7 +60,7 @@ number	{digit}+(.{digit}+)?(E[+-]?{digit}+)?
 <INITIAL>"-"	          {return (RELOP);}
 <INITIAL>"*"	          {return (RELOP);}
 <INITIAL>"/"	          {return (RELOP);}
-<INITIAL>";"	          {return (RBRACE);}
+<INITIAL>";"	          {return (SEMICOLON);}
 
 <INITIAL>.							{return ERRORCHAR;}
 
@@ -76,16 +79,28 @@ void writeout(int c){
 	case LSPACE: fprintf(yyout, "(LSPACE, \"%s\") ", yytext);
 	globalPtr =globalPtr->addChild();
 	break;
+	case IP_LSPACE: fprintf(yyout, "(IP_LSPACE, \"%s\")", yytext);
+	break;
     case RSPACE: fprintf(yyout, "(LSPACE, \"%s\") ", yytext);
+	globalPtr =globalPtr->deleteSelf();
+	break;
+	case IP_SEMICOLON:fprintf(yyout, "(IP_LSPACE, \"%s\")", yytext);
 	globalPtr =globalPtr->deleteSelf();
 	break;
   	case ERRORCHAR: fprintf(yyout, "(ERRORCHAR, \"%s\") ", yytext);break;
     case MAIN: fprintf(yyout, "(MAIN, \"%s\") ", yytext);break;
   	case RELOP: fprintf(yyout, "(RELOP, \"%s\") ", yytext);break;
-    case WHILE: fprintf(yyout, "(WHILE, \"%s\") ", yytext);break;
+    case WHILE: fprintf(yyout, "(WHILE, \"%s\") ", yytext);
+    globalPtr = globalPtr->addChild();
+    break;
     case DO: fprintf(yyout, "(DO, \"%s\") ", yytext);break;
-    case IF: fprintf(yyout, "(IF, \"%s\") ", yytext);break;
+    case IF: fprintf(yyout, "(IF, \"%s\") ", yytext);
+    globalPtr = globalPtr->addChild();
+    break;
     case ELSE: fprintf(yyout, "(ELSE, \"%s\") ", yytext);break;
+    case FOR : fprintf(yyout,"(for,\"%s\"\n)", yytext);
+    globalPtr = globalPtr->addChild();
+    break;
     case NUMBER: fprintf(yyout, "(NUM, \"%s\") ", yytext);break;
     case ID:
 	valuePtr = globalPtr->addChar(string(yytext));
@@ -99,7 +114,6 @@ void writeout(int c){
     case NEWLINE: fprintf(yyout, "\n");break;
     case VOID : fprintf(yyout,"(VOID,\"%s\")", yytext);break;
     case TYPE : fprintf(yyout,"(TYPE,\"%s\")", yytext);break;
-    case FOR : fprintf(yyout,"(for,\"%s\"\n)", yytext);break;
     case LP: fprintf(yyout,"(LP,\"%s\")",yytext);break;
     case RP: fprintf(yyout,"(RP,\"%s\")",yytext);break;
     case ASSIGN: fprintf(yyout,"(ASSIGN,\"%s\")",yytext);break;
