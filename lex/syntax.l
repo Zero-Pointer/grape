@@ -45,7 +45,7 @@ number	    {digit}+(\.{digit}+)?(E[+-]?{digit}+)?
 <INITIAL>{number}	      {return (NUMBER);}
 <INITIAL>"<"	          {return (LET);}
 <INITIAL>"<="	          {return (LEET);}
-<INITIAL>"="	          {return (ASSIGN);}
+<INITIAL>"="	          {return (ASSGIN);}
 <INITIAL>">"	          {return (MOT);}
 <INITIAL>">="	          {return (MOET);}
 <INITIAL>"=="               {return (EQU);}
@@ -59,7 +59,10 @@ number	    {digit}+(\.{digit}+)?(E[+-]?{digit}+)?
 <INITIAL>"*"	          {return (MUL);}
 <INITIAL>"/"	          {return (DIV);}
 <INITIAL>";"	          {return (SEMICOLON);}
-
+<INITIAL>"&"	          {return (AND);}
+<INITIAL>"||"	          {return (OR);}
+<INITIAL>"%"	          {return (MOD);}
+<INITIAL>"^"	          {return (MI);}
 <INITIAL>.							{return ERRORCHAR;}
 
 
@@ -115,7 +118,7 @@ void writeout(int c){
     case TYPE : fprintf(yyout,"(TYPE,\"%s\")", yytext);break;
     case LP: fprintf(yyout,"(LP,\"%s\")",yytext);break;
     case RP: fprintf(yyout,"(RP,\"%s\")",yytext);break;
-    case ASSIGN: fprintf(yyout,"(ASSIGN,\"%s\")",yytext);break;
+    case ASSGIN: fprintf(yyout,"(ASSGIN,\"%s\")",yytext);break;
     case SEMICOLON: fprintf(yyout,"(SEMICOLON,\"%s\")",yytext);break;
     case LET: fprintf(yyout,"(LET,\"%s\")",yytext);break;
     case MOT: fprintf(yyout,"(MOT,\"%s\")",yytext);break;
@@ -127,6 +130,10 @@ void writeout(int c){
     case DEC: fprintf(yyout,"(DEC,\"%s\")",yytext);break;
     case MUL: fprintf(yyout,"(MUL,\"%s\")",yytext);break;
     case DIV: fprintf(yyout,"(DIV,\"%s\")",yytext);break;
+    case AND: fprintf(yyout,"(AND,\"%s\")",yytext);break;
+    case OR: fprintf(yyout,"(OR,\"%s\")",yytext);break;
+    case MOD: fprintf(yyout,"(MOD,\"%s\")",yytext);break;
+     case MI: fprintf(yyout,"(MI,\"%s\")",yytext);break;
     default:break;
   }
   return;

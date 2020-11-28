@@ -6,10 +6,15 @@
 #define LEXICALANALYSIS1_0_STATICFLAGS_H
 
 enum {
-    ASSIGN,
+    A,
+    ASSGIN,
     IF,
     ELSE,
 
+    AND,
+    OR,
+    MOD,
+    MI,
     WHILE,
     DO,
     ID,
