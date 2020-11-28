@@ -65,6 +65,7 @@ number	{digit}+(.{digit}+)?(E[+-]?{digit}+)?
 <INITIAL>.							{return ERRORCHAR;}
 
 
+
 %%
 
 
