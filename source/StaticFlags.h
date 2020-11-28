@@ -35,6 +35,15 @@ enum {
 
 
 
+    //bool < > <= >= == !=
+    LET,
+    MOT,
+    LEET,
+    MOET,
+    EQU,
+    NEQU,
+
+
     // Type check
     TYPE_NOT_MATCH,
     TYPE_NOT_SUPPORT,

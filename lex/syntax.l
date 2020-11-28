@@ -16,7 +16,7 @@ ws			{delim}+
 letter	    [A-Za-z_]
 digit		[0-9]
 id			{letter}({letter}|{digit})*
-number	{digit}+(.{digit}+)?(E[+-]?{digit}+)?
+number	    {digit}+(\.{digit}+)?(E[+-]?{digit}+)?
 
 /* 状态（或条件）定义可以定义在这里
  * INITIAL是一个默认的状态，不需要定义
@@ -30,9 +30,6 @@ number	{digit}+(.{digit}+)?(E[+-]?{digit}+)?
 <INITIAL>"//"			  {BEGIN COMMENT2;}
 <COMMENT2>\n			  {BEGIN INITIAL;}
 <COMMENT2>.				  {;}
-
- /* ECHO是一个宏，相当于 fprintf(yyout, "%s", yytext)*/
-
 <INITIAL>{ws}	          {;}
 <INITIAL>void             {return (VOID);}
 <INITIAL>int               {return (TYPE);}
@@ -46,20 +43,21 @@ number	{digit}+(.{digit}+)?(E[+-]?{digit}+)?
 <INITIAL>main             {return (MAIN);}
 <INITIAL>{id}	          {return (ID);}
 <INITIAL>{number}	      {return (NUMBER);}
-<INITIAL>"<"	          {return (RELOP);}
-<INITIAL>"<="	          {return (RELOP);}
+<INITIAL>"<"	          {return (LET);}
+<INITIAL>"<="	          {return (LEET);}
 <INITIAL>"="	          {return (ASSIGN);}
-<INITIAL>"!="	          {return (RELOP);}
-<INITIAL>">"	          {return (RELOP);}
-<INITIAL>">="	          {return (RELOP);}
+<INITIAL>">"	          {return (MOT);}
+<INITIAL>">="	          {return (MOET);}
+<INITIAL>"=="               {return (EQU);}
+<INITIAL>"!="	          {return (NEQU);}
 <INITIAL>"("	          {return (LP);}
 <INITIAL>")"	          {return (RP);}
 <INITIAL>"{"	          {return (LSPACE);}
 <INITIAL>"}"	          {return (RSPACE);}
-<INITIAL>"+"	          {return (RELOP);}
-<INITIAL>"-"	          {return (RELOP);}
-<INITIAL>"*"	          {return (RELOP);}
-<INITIAL>"/"	          {return (RELOP);}
+<INITIAL>"+"	          {return (ADD);}
+<INITIAL>"-"	          {return (DEC);}
+<INITIAL>"*"	          {return (MUL);}
+<INITIAL>"/"	          {return (DIV);}
 <INITIAL>";"	          {return (SEMICOLON);}
 
 <INITIAL>.							{return ERRORCHAR;}
@@ -118,6 +116,17 @@ void writeout(int c){
     case LP: fprintf(yyout,"(LP,\"%s\")",yytext);break;
     case RP: fprintf(yyout,"(RP,\"%s\")",yytext);break;
     case ASSIGN: fprintf(yyout,"(ASSIGN,\"%s\")",yytext);break;
+    case SEMICOLON: fprintf(yyout,"(SEMICOLON,\"%s\")",yytext);break;
+    case LET: fprintf(yyout,"(LET,\"%s\")",yytext);break;
+    case MOT: fprintf(yyout,"(MOT,\"%s\")",yytext);break;
+    case LEET: fprintf(yyout,"(LEET,\"%s\")",yytext);break;
+    case MOET: fprintf(yyout,"(MOET,\"%s\")",yytext);break;
+    case EQU: fprintf(yyout,"(EQU,\"%s\")",yytext);break;
+    case NEQU: fprintf(yyout,"(NEQU,\"%s\")",yytext);break;
+    case ADD: fprintf(yyout,"(ADD,\"%s\")",yytext);break;
+    case DEC: fprintf(yyout,"(DEC,\"%s\")",yytext);break;
+    case MUL: fprintf(yyout,"(MUL,\"%s\")",yytext);break;
+    case DIV: fprintf(yyout,"(DIV,\"%s\")",yytext);break;
     default:break;
   }
   return;
