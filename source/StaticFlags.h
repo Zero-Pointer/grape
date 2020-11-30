@@ -6,7 +6,7 @@
 #define LEXICALANALYSIS1_0_STATICFLAGS_H
 
 enum {
-    A,
+    USELESSSSSS,
     ASSGIN,
     IF,
     ELSE,
@@ -58,7 +58,9 @@ enum {
     IP_LSPACE,
     IP_SEMICOLON,
 
-    COMMA
+    COMMA,
+    RETURN,
+    POINT,
 };
 enum TYPE_ENUM{
     // Type const

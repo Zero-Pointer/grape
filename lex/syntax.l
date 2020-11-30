@@ -14,6 +14,8 @@ auto* globalPtr = new TableNode();
 delim		[ \t \n]
 ws			{delim}+
 letter	    [A-Za-z_]
+type        int
+head_file   #include
 digit		[0-9]
 id			{letter}({letter}|{digit})*
 number	    {digit}+(\.{digit}+)?(E[+-]?{digit}+)?
@@ -23,6 +25,7 @@ number	    {digit}+(\.{digit}+)?(E[+-]?{digit}+)?
  */
 %s COMMENT
 %s COMMENT2
+%s HEAD_FILE
 %%<INITIAL>"/*"			  {BEGIN COMMENT;}
 <COMMENT>"*/"			  {BEGIN INITIAL;}
 <COMMENT>.|\n			  {;}
@@ -31,7 +34,7 @@ number	    {digit}+(\.{digit}+)?(E[+-]?{digit}+)?
 <COMMENT2>.				  {;}
 <INITIAL>{ws}	          {;}
 <INITIAL>void             {return (VOID);}
-<INITIAL>int               {return (TYPE);}
+<INITIAL>{type}            {return (TYPE);}
 <INITIAL>while              {    return (WHILE);}
 <INITIAL>for                {   return (FOR);}
 <INITIAL>do		          {return (DO);}
@@ -39,6 +42,7 @@ number	    {digit}+(\.{digit}+)?(E[+-]?{digit}+)?
 <INITIAL>else		          {return (ELSE);}
 <INITIAL>main             {return (MAIN);}
 <INITIAL>return             {return (RETURN);}
+
 <INITIAL>{id}	          {return (ID);}
 <INITIAL>{number}	      {return (NUMBER);}
 <INITIAL>"<"	          {return (LET);}
@@ -57,6 +61,7 @@ number	    {digit}+(\.{digit}+)?(E[+-]?{digit}+)?
 <INITIAL>"*"	          {return (MUL);}
 <INITIAL>"/"	          {return (DIV);}
 <INITIAL>";"	          {return (SEMICOLON);}
+<INITIAL>"\."             {return (POINT);}
 <INITIAL>.							{return ERRORCHAR;}
 
 
@@ -115,6 +120,7 @@ void writeout(int c){
     case MUL: fprintf(yyout,"MUL, \"%s\"\n",yytext);break;
     case DIV: fprintf(yyout,"DIV, \"%s\"\n",yytext);break;
     case RETURN: fprintf(yyout,"RETURN, \"%s\"\n",yytext);break;
+    case POINT: fprintf(yyout,"POINT, \"%s\"\n",yytext);break;
     default:break;
   }
   return;
