@@ -6,21 +6,15 @@
 #define LEXICALANALYSIS1_0_STATICFLAGS_H
 
 enum {
-    LT,
-    GT,
-    EQ,
-    LE,
-    NE,
-    GE,
-    LLK,
-    RLK,
-    LBK,
-    RBK,
+    A,
+    ASSGIN,
     IF,
     ELSE,
-    EQU,
-    SEM,
 
+    AND,
+    OR,
+    MOD,
+    MI,
     WHILE,
     DO,
     ID,
@@ -36,12 +30,35 @@ enum {
 
     FOR,
     TYPE,
+    VOID,
+    LP,
+    MAIN,
+    RP,
+    LSPACE,
+    RSPACE,
+    SEMICOLON,
+
+
+
+    //bool < > <= >= == !=
+    LET,
+    MOT,
+    LEET,
+    MOET,
+    EQU,
+    NEQU,
 
 
     // Type check
     TYPE_NOT_MATCH,
     TYPE_NOT_SUPPORT,
     TYPE_MATCH,
+
+    //Trans parameter state
+    IP_LSPACE,
+    IP_SEMICOLON,
+
+    COMMA
 };
 enum TYPE_ENUM{
     // Type const

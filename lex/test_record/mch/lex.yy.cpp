@@ -1,5 +1,6 @@
+#line 2 "lex.yy.cpp"
 
-#line 3 "lex.yy.c"
+#line 4 "lex.yy.cpp"
 
 #define  YY_INT_ALIGNED short int
 
@@ -485,22 +486,22 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "lex.yy.cpp"
+#line 1 "syntax.l"
 /* 把注释去掉 */
 #line 5 "syntax.l"
 #include <iostream>
 #include <stdio.h>
-#include "../source/StaticFlags.h"
+#include "source/StaticFlags.h"
 using namespace std;
-#include "../source/TableNode.h"
+#include "source/TableNode.h"
 auto* globalPtr = new TableNode();
 
-#line 499 "lex.yy.c"
+#line 500 "lex.yy.cpp"
 /* 状态（或条件）定义可以定义在这里
  * INITIAL是一个默认的状态，不需要定义
  */
 
-#line 504 "lex.yy.c"
+#line 505 "lex.yy.cpp"
 
 #define INITIAL 0
 #define COMMENT 1
@@ -722,7 +723,7 @@ YY_DECL
 #line 27 "syntax.l"
 
 
-#line 726 "lex.yy.c"
+#line 727 "lex.yy.cpp"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -953,7 +954,7 @@ YY_RULE_SETUP
 #line 68 "syntax.l"
 ECHO;
 	YY_BREAK
-#line 957 "lex.yy.c"
+#line 958 "lex.yy.cpp"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(COMMENT):
 case YY_STATE_EOF(COMMENT2):
