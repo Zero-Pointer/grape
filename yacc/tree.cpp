@@ -77,6 +77,9 @@ void eval(gramTree *head,int leavel) {
     if(head!=NULL) {
         string Name = head->name;
         if(head->line!=-1) {
+            if(head->name != "Program") {
+                cout << head->line;
+            }
             for(int i=0;i<leavel;++i) {
                 cout << ". ";
             }
@@ -94,9 +97,6 @@ void eval(gramTree *head,int leavel) {
             }
             else if(head->name=="STRING_LITERAL") {
                 cout << ":" << head->content;
-            }
-            else {
-                cout << " <" << head->line << ">";
             }
             cout << endl;
         }

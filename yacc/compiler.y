@@ -99,7 +99,7 @@ primary_expression:
 /*后缀表达式*/
 postfix_expression:
 	primary_expression{
-		$$ = create_tree("postfix_expression",1,$1);
+		$$ = $1;
 	}
 	| 	postfix_expression '[' expression ']'{
 		$$ = create_tree("postfix_expression",4,$1,$2,$3,$4);
@@ -125,7 +125,7 @@ postfix_expression:
 
 argument_expression_list:
 	assignment_expression{
-		$$ = create_tree("argument_expression_list",1,$1);
+		$$ = $1;
 	}
 	| 	argument_expression_list ',' assignment_expression {
 		$$ = create_tree("argument_expression_list",3,$1,$2,$3);
@@ -136,7 +136,7 @@ argument_expression_list:
 unary_expression:
 	postfix_expression{
 		//printf("postfix");
-		$$ = create_tree("unary_expression",1,$1);
+		$$ = $1;
 	}
 	| 	INC_OP unary_expression{
 		//++
@@ -170,7 +170,7 @@ unary_operator:
 /*可乘表达式*/
 multiplicative_expression:
 	unary_expression {
-		$$ = create_tree("multiplicative_expression",1,$1);
+		$$ = $1;
 	}
 	| multiplicative_expression '*' unary_expression {
 		$$ = create_tree("multiplicative_expression",3,$1,$2,$3);
@@ -186,7 +186,7 @@ multiplicative_expression:
 /*可加表达式*/
 additive_expression:
 	multiplicative_expression  {
-		$$ = create_tree("additive_expression",1,$1);
+		$$ = $1;
 	}
 	| additive_expression '+' multiplicative_expression {
 		$$ = create_tree("additive_expression",3,$1,$2,$3);
@@ -214,7 +214,7 @@ shift_expression:
 /*关系表达式*/
 relational_expression:
 	shift_expression {
-		$$ = create_tree("relational_expression",1,$1);
+		$$ = $1;
 	}
 	| relational_expression '<' shift_expression {
 		$$ = create_tree("relational_expression",3,$1,$2,$3);
@@ -235,7 +235,7 @@ relational_expression:
 /*相等表达式*/
 equality_expression:
 	relational_expression {
-		$$ = create_tree("equality_expression",1,$1);
+		$$ = $1;
 	}
 	| equality_expression EQ_OP relational_expression {
 		// ==
@@ -249,7 +249,7 @@ equality_expression:
 
 and_expression:
 	equality_expression {
-		$$ = create_tree("and_expression",1,$1);
+		$$ = $1;
 	}
 	| and_expression '&' equality_expression {
 		$$ = create_tree("and_expression",3,$1,$2,$3);
@@ -259,7 +259,7 @@ and_expression:
 /*异或*/
 exclusive_or_expression:
 	and_expression {
-		$$ = create_tree("exclusive_or_expression",1,$1);
+		$$ = $1;
 	}
 	| exclusive_or_expression '^' and_expression {
 		$$ = create_tree("exclusive_or_expression",3,$1,$2,$3);
@@ -269,7 +269,7 @@ exclusive_or_expression:
 /*或*/
 inclusive_or_expression:
 	exclusive_or_expression {
-		$$ = create_tree("inclusive_or_expression",1,$1);
+		$$ = $1;
 	}
 	| inclusive_or_expression '|' exclusive_or_expression {
 		$$ = create_tree("inclusive_or_expression",3,$1,$2,$3);
@@ -279,7 +279,7 @@ inclusive_or_expression:
 /*and逻辑表达式*/
 logical_and_expression:
 	inclusive_or_expression {
-		$$ = create_tree("logical_and_expression",1,$1);
+		$$ = $1;
 	}
 	| logical_and_expression AND_OP inclusive_or_expression {
 		//&&
@@ -290,7 +290,7 @@ logical_and_expression:
 /*or 逻辑表达式*/
 logical_or_expression:
 	logical_and_expression {
-		$$ = create_tree("logical_or_expression",1,$1);
+		$$ = $1;
 	}
 	| logical_or_expression OR_OP logical_and_expression {
 		//||
@@ -302,7 +302,7 @@ logical_or_expression:
 assignment_expression:
 	logical_or_expression {
 		//条件表达式
-		$$ = create_tree("assignment_expression",1,$1);
+		$$ = $1;
 	}
 	| unary_expression assignment_operator assignment_expression {
 		$$ = create_tree("assignment_expression",3,$1,$2,$3);
@@ -360,7 +360,7 @@ assignment_operator:
 expression:
 	assignment_expression {
 		//赋值表达式
-		$$ = create_tree("expression",1,$1);
+		$$ = $1;
 	}
 	| expression ',' assignment_expression {
 		//逗号表达式
@@ -381,7 +381,7 @@ declaration:
 
 init_declarator_list:
 	init_declarator {
-		$$ = create_tree("init_declarator_list",1,$1);
+		$$ = $1;
 	}
 	| init_declarator_list ',' init_declarator {
 		$$ = create_tree("init_declarator_list",3,$1,$2,$3);
@@ -390,7 +390,7 @@ init_declarator_list:
 
 init_declarator:
 	declarator {
-		$$ = create_tree("init_declarator",1,$1);
+		$$ = $1;
 	}
 	| declarator '=' initializer {
 		$$ = create_tree("init_declarator",3,$1,$2,$3);
@@ -630,10 +630,10 @@ block_item_list:
 
 block_item:
 	declaration {
-		$$ = create_tree("block_item",1,$1);
+		$$ = $1;
 	}
 	| statement {
-		$$ = create_tree("block_item",1,$1);
+		$$ = $1;
 	}
 	;
 

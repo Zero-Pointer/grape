@@ -1725,7 +1725,7 @@ yyreduce:
   case 9:
 #line 101 "compiler.y"
                           {
-		(yyval.gt) = create_tree("postfix_expression",1,(yyvsp[0].gt));
+		(yyval.gt) = (yyvsp[0].gt);
 	}
 #line 1731 "y.tab.c"
     break;
@@ -1778,7 +1778,7 @@ yyreduce:
   case 15:
 #line 127 "compiler.y"
                              {
-		(yyval.gt) = create_tree("argument_expression_list",1,(yyvsp[0].gt));
+		(yyval.gt) = (yyvsp[0].gt);
 	}
 #line 1784 "y.tab.c"
     break;
@@ -1795,7 +1795,7 @@ yyreduce:
 #line 137 "compiler.y"
                           {
 		//printf("postfix");
-		(yyval.gt) = create_tree("unary_expression",1,(yyvsp[0].gt));
+		(yyval.gt) = (yyvsp[0].gt);
 	}
 #line 1801 "y.tab.c"
     break;
@@ -1861,7 +1861,7 @@ yyreduce:
   case 25:
 #line 172 "compiler.y"
                          {
-		(yyval.gt) = create_tree("multiplicative_expression",1,(yyvsp[0].gt));
+		(yyval.gt) = (yyvsp[0].gt);
 	}
 #line 1867 "y.tab.c"
     break;
@@ -1893,7 +1893,7 @@ yyreduce:
   case 29:
 #line 188 "compiler.y"
                                    {
-		(yyval.gt) = create_tree("additive_expression",1,(yyvsp[0].gt));
+		(yyval.gt) = (yyvsp[0].gt);
 	}
 #line 1899 "y.tab.c"
     break;
@@ -1943,7 +1943,7 @@ yyreduce:
   case 35:
 #line 216 "compiler.y"
                          {
-		(yyval.gt) = create_tree("relational_expression",1,(yyvsp[0].gt));
+		(yyval.gt) = (yyvsp[0].gt);
 	}
 #line 1949 "y.tab.c"
     break;
@@ -1985,7 +1985,7 @@ yyreduce:
   case 40:
 #line 237 "compiler.y"
                               {
-		(yyval.gt) = create_tree("equality_expression",1,(yyvsp[0].gt));
+		(yyval.gt) = (yyvsp[0].gt);
 	}
 #line 1991 "y.tab.c"
     break;
@@ -2011,7 +2011,7 @@ yyreduce:
   case 43:
 #line 251 "compiler.y"
                             {
-		(yyval.gt) = create_tree("and_expression",1,(yyvsp[0].gt));
+		(yyval.gt) = (yyvsp[0].gt);
 	}
 #line 2017 "y.tab.c"
     break;
@@ -2027,7 +2027,7 @@ yyreduce:
   case 45:
 #line 261 "compiler.y"
                        {
-		(yyval.gt) = create_tree("exclusive_or_expression",1,(yyvsp[0].gt));
+		(yyval.gt) = (yyvsp[0].gt);
 	}
 #line 2033 "y.tab.c"
     break;
@@ -2043,7 +2043,7 @@ yyreduce:
   case 47:
 #line 271 "compiler.y"
                                 {
-		(yyval.gt) = create_tree("inclusive_or_expression",1,(yyvsp[0].gt));
+		(yyval.gt) = (yyvsp[0].gt);
 	}
 #line 2049 "y.tab.c"
     break;
@@ -2059,7 +2059,7 @@ yyreduce:
   case 49:
 #line 281 "compiler.y"
                                 {
-		(yyval.gt) = create_tree("logical_and_expression",1,(yyvsp[0].gt));
+		(yyval.gt) = (yyvsp[0].gt);
 	}
 #line 2065 "y.tab.c"
     break;
@@ -2076,7 +2076,7 @@ yyreduce:
   case 51:
 #line 292 "compiler.y"
                                {
-		(yyval.gt) = create_tree("logical_or_expression",1,(yyvsp[0].gt));
+		(yyval.gt) = (yyvsp[0].gt);
 	}
 #line 2082 "y.tab.c"
     break;
@@ -2094,7 +2094,7 @@ yyreduce:
 #line 303 "compiler.y"
                               {
 		//条件表达式
-		(yyval.gt) = create_tree("assignment_expression",1,(yyvsp[0].gt));
+		(yyval.gt) = (yyvsp[0].gt);
 	}
 #line 2100 "y.tab.c"
     break;
@@ -2209,7 +2209,7 @@ yyreduce:
 #line 361 "compiler.y"
                               {
 		//赋值表达式
-		(yyval.gt) = create_tree("expression",1,(yyvsp[0].gt));
+		(yyval.gt) = (yyvsp[0].gt);
 	}
 #line 2215 "y.tab.c"
     break;
@@ -2242,7 +2242,7 @@ yyreduce:
   case 70:
 #line 383 "compiler.y"
                         {
-		(yyval.gt) = create_tree("init_declarator_list",1,(yyvsp[0].gt));
+		(yyval.gt) = (yyvsp[0].gt);
 	}
 #line 2248 "y.tab.c"
     break;
@@ -2258,7 +2258,7 @@ yyreduce:
   case 72:
 #line 392 "compiler.y"
                    {
-		(yyval.gt) = create_tree("init_declarator",1,(yyvsp[0].gt));
+		(yyval.gt) = (yyvsp[0].gt);
 	}
 #line 2264 "y.tab.c"
     break;
@@ -2725,7 +2725,7 @@ yyreduce:
   case 129:
 #line 632 "compiler.y"
                     {
-		(yyval.gt) = create_tree("block_item",1,(yyvsp[0].gt));
+		(yyval.gt) = (yyvsp[0].gt);
 	}
 #line 2731 "y.tab.c"
     break;
@@ -2733,7 +2733,7 @@ yyreduce:
   case 130:
 #line 635 "compiler.y"
                     {
-		(yyval.gt) = create_tree("block_item",1,(yyvsp[0].gt));
+		(yyval.gt) = (yyvsp[0].gt);
 	}
 #line 2739 "y.tab.c"
     break;
