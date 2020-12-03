@@ -53,7 +53,6 @@ id			    {letter}({letter}|{digit})*
 <INITIAL>false            {return (FALSE);}
 <INITIAL>{const_int}      {return (CONST_INT);}
 <INITIAL>{const_DOUBLE}   {return (CONST_DOUBLE);}
-<INITIAL>
 
 <INITIAL>{id}	          {return (ID);}
 
