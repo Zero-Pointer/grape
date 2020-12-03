@@ -49,6 +49,8 @@ id			    {letter}({letter}|{digit})*
 <INITIAL>void             {return (VOID);}
 <INITIAL>bool             {return (BOOL);}
 <INITIAL>const            {return (CONST);}
+<INITIAL>true             {return (TRUE);}
+<INITIAL>false            {return (FALSE);}
 <INITIAL>{const_int}      {return (CONST_INT);}
 <INITIAL>{const_DOUBLE}   {return (CONST_DOUBLE);}
 <INITIAL>

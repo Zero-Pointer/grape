@@ -73,6 +73,9 @@ enum {
     SEMICOLON,
     COMMA,
     POINT,
+    TRUE,
+    FALSE,
+
 };
 enum TYPE_ENUM{
     // Type const
@@ -80,5 +83,7 @@ enum TYPE_ENUM{
     TYPE_DOUBLE,
     TYPE_FLOAT,
     TYPE_STRING,
+    TYPE_BOOL,
+
 };
 #endif //LEXICALANALYSIS1_0_STATICFLAGS_H
