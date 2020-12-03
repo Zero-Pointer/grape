@@ -7,39 +7,54 @@
 
 enum {
     USELESSSSSS,
-    ASSGIN,
-    IF,
-    ELSE,
-
-    AND,
-    OR,
-    MOD,
-    MI,
-    WHILE,
-    DO,
     ID,
     NUMBER,
     RELOP,
-
     NEWLINE,
     ERRORCHAR,
+    MAIN,
+    // Type check
+    TYPE_NOT_MATCH,
+    TYPE_NOT_SUPPORT,
+    TYPE_MATCH,
+
+    //y.txt
+    IF,
+    ELSE,
+    WHILE,
+    DO,
+    FOR,
+    CONTINUE,
+    BREAK,
+    RETURN,
+    CHAR,
+    INT,
+    DOUBLE,
+    VOID,
+    BOOL,
+    SUB_ASSIGN,
+    ADD_ASSIGN,
+    DIV_ASSIGN,
+    MUL_ASSIGN,
+    AND_OP,
+    OR_OP,
+    INC_OP,
+    DEC_OP,
+    LE_OP,
+    GE_OP,
+    EQ_OP,
+    NE_OP,
+    CONST,
+    CONSTANT_INT,
+    CONSTANT_DOUBLE,
+
+
+
+    //USELESS  12.03  to the end
     ADD,
     DEC,
     MUL,
     DIV,
-
-    FOR,
-    TYPE,
-    VOID,
-    LP,
-    MAIN,
-    RP,
-    LSPACE,
-    RSPACE,
-    SEMICOLON,
-
-
-
     //bool < > <= >= == !=
     LET,
     MOT,
@@ -47,19 +62,16 @@ enum {
     MOET,
     EQU,
     NEQU,
-
-
-    // Type check
-    TYPE_NOT_MATCH,
-    TYPE_NOT_SUPPORT,
-    TYPE_MATCH,
-
-    //Trans parameter state
-    IP_LSPACE,
-    IP_SEMICOLON,
-
+    AND,
+    OR,
+    MOD,
+    MI,
+    LP,
+    RP,
+    LSPACE,
+    RSPACE,
+    SEMICOLON,
     COMMA,
-    RETURN,
     POINT,
 };
 enum TYPE_ENUM{
