@@ -21,7 +21,7 @@ void yyerror(const char*);
 	struct gramTree* gt;
 }
 
-%token <gt> IDENTIFIER CONSTANT STRING_LITERAL SIZEOF CONSTANT_INT CONSTANT_DOUBLE
+%token <gt> IDENTIFIER STRING_LITERAL CONSTANT_INT CONSTANT_DOUBLE
 %token <gt> PTR_OP INC_OP DEC_OP LEFT_OP RIGHT_OP LE_OP GE_OP EQ_OP NE_OP
 %token <gt> AND_OP OR_OP MUL_ASSIGN DIV_ASSIGN MOD_ASSIGN ADD_ASSIGN
 %token <gt> SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
@@ -29,14 +29,14 @@ void yyerror(const char*);
 
 %token <gt> CHAR INT DOUBLE VOID BOOL
 
-%token <gt> CASE IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
+%token <gt> CASE IF ELSE SWITCH WHILE DO FOR CONTINUE BREAK RETURN
 
 %token <gt> TRUE FALSE
 
 %token <gt> ';' ',' ':' '=' '[' ']' '.' '&' '!' '~' '-' '+' '*' '/' '%' '<' '>' '^' '|' '?' '{' '}' '(' ')'
 
 %type <gt> primary_expression postfix_expression argument_expression_list unary_expression unary_operator
-%type <gt> multiplicative_expression additive_expression shift_expression relational_expression equality_expression
+
 %type <gt> and_expression exclusive_or_expression inclusive_or_expression logical_and_expression logical_or_expression
 %type <gt> assignment_expression assignment_operator expression
 
@@ -49,7 +49,7 @@ void yyerror(const char*);
 %type <gt> designator statement labeled_statement compound_statement block_item_list block_item expression_statement
 %type <gt> selection_statement iteration_statement jump_statement translation_unit external_declaration function_definition
 %type <gt> declaration_list
-
+%type <gt> multiplicative_expression additive_expression shift_expression relational_expression equality_expression
 
 
 %nonassoc LOWER_THAN_ELSE
@@ -683,10 +683,7 @@ iteration_statement:
 
 //跳转指令
 jump_statement:
-	GOTO IDENTIFIER ';' {
-		$$ = create_tree("jump_statement",2,$1,$2);
-	}
-	| CONTINUE ';' {
+	CONTINUE ';' {
 		$$ = create_tree("jump_statement",2,$1,$2);
 	}
 	| BREAK ';' {

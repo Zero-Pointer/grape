@@ -41,7 +41,7 @@ IS          ((u|U)|(u|U)?(l|L|ll|LL)|(l|L|ll|LL)(u|U))
 "do"			{ count(); yylval.gt =create_tree("DO",0,yylineno);			return(DO); }
 "else"			{ count(); yylval.gt =create_tree("ELSE",0,yylineno);		return(ELSE); }
 "for"			{ count(); yylval.gt =create_tree("FOR",0,yylineno);		return(FOR); }
-"goto"			{ count(); yylval.gt =create_tree("GOTO",0,yylineno);		return(GOTO); }
+
 "if"			{ count(); yylval.gt =create_tree("IF",0,yylineno);			return(IF); }
 "return"		{ count(); yylval.gt =create_tree("RETURN",0,yylineno);		return(RETURN); }
 "switch"		{ count(); yylval.gt =create_tree("SWITCH",0,yylineno);		return(SWITCH); }
@@ -50,19 +50,15 @@ IS          ((u|U)|(u|U)?(l|L|ll|LL)|(l|L|ll|LL)(u|U))
 "true"			{ count(); yylval.gt =create_tree("TRUE",0,yylineno);		return(TRUE); }
 "false"			{ count(); yylval.gt =create_tree("FALSE",0,yylineno);		return(FALSE); }
 
-{L}({L}|{D})* 	{count(); yylval.gt =create_tree("IDENTIFIER",0,yylineno);	return(check_type());/*IDENTIFIER*/ }
+{L}({L}|{D})* 	{count(); yylval.gt =create_tree("IDENTIFIER",0,yylineno);	return(IDENTIFIER);/*IDENTIFIER*/ }
 
 0[xX]{H}+{IS}?	{ count(); yylval.gt =create_tree("CONSTANT_INT",0,yylineno);	return(CONSTANT_INT); /*16进制*/}
 0[0-7]*{IS}?	{ count(); yylval.gt =create_tree("CONSTANT_INT",0,yylineno);	return(CONSTANT_INT); /*8进制*/}
 [1-9]{D}*{IS}?	{ count(); yylval.gt =create_tree("CONSTANT_INT",0,yylineno);	return(CONSTANT_INT); /*10进制*/}
-L?'(\\.|[^\\'\n])+'		{ count(); return(CONSTANT); }
 
 {D}+{E}{FS}?				{ count(); yylval.gt =create_tree("CONSTANT_DOUBLE",0,yylineno);	return(CONSTANT_DOUBLE); /*浮点数*/}
 {D}*"."{D}+{E}?{FS}?		{ count(); yylval.gt =create_tree("CONSTANT_DOUBLE",0,yylineno);	return(CONSTANT_DOUBLE); /*浮点数*/}
 {D}+"."{D}*{E}?{FS}?		{ count(); yylval.gt =create_tree("CONSTANT_DOUBLE",0,yylineno);	return(CONSTANT_DOUBLE); /*浮点数*/}
-0[xX]{H}+{P}{FS}?			{ count(); return(CONSTANT); }
-0[xX]{H}*"."{H}+{P}?{FS}?   { count(); return(CONSTANT); }
-0[xX]{H}+"."{H}*{P}?{FS}?   { count(); return(CONSTANT); }
 
 
 L?\"(\\.|[^\\"\n])*\"	{ count();  yylval.gt =create_tree("STRING_LITERAL",0,yylineno);	return(STRING_LITERAL); /*字符串常量*/}
