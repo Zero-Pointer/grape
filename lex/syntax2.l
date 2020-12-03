@@ -11,13 +11,15 @@ auto* globalPtr = new TableNode();
 %}
 
 
-delim		[ \t \n]
-ws			{delim}+
-letter	    [A-Za-z_]
-type         (int|double|char)
-digit		[0-9]
-id			{letter}({letter}|{digit})*
-number	    {digit}+(\.{digit}+)?(E[+-]?{digit}+)?
+delim		    [ \t \n]
+ws			    {delim}+
+letter	        [A-Za-z_]
+digit		    [0-9]
+FS			    (f|F|l|L)
+IS              ((u|U)|(u|U)?(l|L|ll|LL)|(l|L|ll|LL)(u|U))
+const_int       [1-9]{digit}*{IS}?
+const_double    {digit}+(\.{digit}+)?(E[+-]?{digit}+)?
+id			    {letter}({letter}|{digit})*
 
 /* 状态（或条件）定义可以定义在这里
  * INITIAL是一个默认的状态，不需要定义
@@ -30,35 +32,69 @@ number	    {digit}+(\.{digit}+)?(E[+-]?{digit}+)?
 <INITIAL>"//"			  {BEGIN COMMENT2;}
 <COMMENT2>\n			  {BEGIN INITIAL;}
 <COMMENT2>.				  {;}
+
 <INITIAL>{ws}	          {;}
-<INITIAL>void             {return (VOID);}
-<INITIAL>{type}              {return (TYPE);}
-<INITIAL>while              {    return (WHILE);}
-<INITIAL>for                {   return (FOR);}
-<INITIAL>do		          {return (DO);}
 <INITIAL>if		          {return (IF);}
-<INITIAL>else		          {return (ELSE);}
+<INITIAL>else		      {return (ELSE);}
+<INITIAL>while            {return (WHILE);}
+<INITIAL>do		          {return (DO);}
+<INITIAL>for              {return (FOR);}
+<INITIAL>continue         {return (CONTINUE);}
+<INITIAL>break            {return (BREAK);}
+<INITIAL>return           {return (RETURN);}
 <INITIAL>main             {return (MAIN);}
-<INITIAL>return             {return (RETURN);}
+<INITIAL>char             {return (CHAR);}
+<INITIAL>int              {return (INT);}
+<INITIAL>double           {return (DOUBLE);}
+<INITIAL>void             {return (VOID);}
+<INITIAL>bool             {return (BOOL);}
+<INITIAL>const            {return (CONST);}
+<INITIAL>true             {return (TRUE);}
+<INITIAL>false            {return (FALSE);}
+<INITIAL>{const_int}      {return (CONST_INT);}
+<INITIAL>{const_DOUBLE}   {return (CONST_DOUBLE);}
 
 <INITIAL>{id}	          {return (ID);}
-<INITIAL>"<"	          {return (yytext);}
-<INITIAL>"<="	          {return (yytext);}
-<INITIAL>"="	          {return (yytext);}
-<INITIAL>">"	          {return (yytext);}
-<INITIAL>">="	          {return (yytext);}
-<INITIAL>"=="             {return (yytext);}
-<INITIAL>"!="	          {return (yytext);}
-<INITIAL>"("	          {return (yytext);}
-<INITIAL>")"	          {return (yytext);}
-<INITIAL>"{"	          {return (yytext);}
-<INITIAL>"}"	          {return (yytext);}
-<INITIAL>"+"	          {return (yytext);}
-<INITIAL>"-"	          {return (yytext);}
-<INITIAL>"*"	          {return (yytext);}
-<INITIAL>"/"	          {return (yytext);}
-<INITIAL>";"	          {return (yytext);}
-<INITIAL>.							{return ERRORCHAR;}
+
+<INITIAL>"-="	        {return (SUB_ASSIGN);}
+<INITIAL>"+="	        {return (ADD_ASSIGN);}
+<INITIAL>"/="	        {return (DIV_ASSIGN);}
+<INITIAL>"*="	        {return (MUL_ASSIGN);}
+<INITIAL>"&&"	        {return (AND_OP);}
+<INITIAL>"||"	        {return (OR_OP);}
+<INITIAL>"++"	        {return (INC_OP);}
+<INITIAL>"--"	        {return (DEC_OP);}
+<INITIAL>"<="	        {return (LE_OP);}
+<INITIAL>">="	        {return (GE_OP);}
+<INITIAL>"=="           {return (EQ_OP);}
+<INITIAL>"!="	        {return (NE_OP);}
+
+<INITIAL>";"	        {return (yytext);}
+<INITIAL>","            {return (yytext);}
+<INITIAL>":"            {return (yytext);}
+<INITIAL>"="	        {return (yytext);}
+<INITIAL>"["            {return (yytext);}
+<INITIAL>"]"            {return (yytext);}
+<INITIAL>"."            {return (yytext);}
+<INITIAL>"&"            {return (yytext);}
+<INITIAL>"!"            {return (yytext);}
+<INITIAL>"~"            {return (yytext);}
+<INITIAL>"+"	        {return (yytext);}
+<INITIAL>"-"	        {return (yytext);}
+<INITIAL>"*"	        {return (yytext);}
+<INITIAL>"/"	        {return (yytext);}
+<INITIAL>"%"	        {return (yytext);}
+<INITIAL>"<"	        {return (yytext);}
+<INITIAL>">"	        {return (yytext);}
+<INITIAL>"^"	        {return (yytext);}
+<INITIAL>"|"	        {return (yytext);}
+<INITIAL>"?"	        {return (yytext);}
+<INITIAL>"("	        {return (yytext);}
+<INITIAL>")"	        {return (yytext);}
+<INITIAL>"{"	        {return (yytext);}
+<INITIAL>"}"	        {return (yytext);}
+
+<INITIAL>.				  {return ERRORCHAR;}
 
 
 
