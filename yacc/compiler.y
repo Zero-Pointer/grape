@@ -21,11 +21,9 @@ void yyerror(const char*);
 	struct gramTree* gt;
 }
 
-%token <gt> IDENTIFIER STRING_LITERAL CONSTANT_INT CONSTANT_DOUBLE
-%token <gt> PTR_OP INC_OP DEC_OP LEFT_OP RIGHT_OP LE_OP GE_OP EQ_OP NE_OP
-%token <gt> AND_OP OR_OP MUL_ASSIGN DIV_ASSIGN MOD_ASSIGN ADD_ASSIGN
-%token <gt> SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
-%token <gt> XOR_ASSIGN OR_ASSIGN TYPE_NAME
+%token <gt> IDENTIFIER CONSTANT_INT CONSTANT_DOUBLE
+%token <gt> INC_OP DEC_OP LE_OP GE_OP EQ_OP NE_OP
+%token <gt> AND_OP OR_OP MUL_ASSIGN DIV_ASSIGN ADD_ASSIGN SUB_ASSIGN
 
 %token <gt> CHAR INT DOUBLE VOID BOOL
 
@@ -49,7 +47,7 @@ void yyerror(const char*);
 %type <gt> designator statement labeled_statement compound_statement block_item_list block_item expression_statement
 %type <gt> selection_statement iteration_statement jump_statement translation_unit external_declaration function_definition
 %type <gt> declaration_list
-%type <gt> multiplicative_expression additive_expression shift_expression relational_expression equality_expression
+%type <gt> multiplicative_expression additive_expression relational_expression equality_expression
 
 
 %nonassoc LOWER_THAN_ELSE
@@ -196,37 +194,22 @@ additive_expression:
 	}
 	;
 
-/*左移右移*/
-shift_expression:
+/*关系表达式*/
+relational_expression:
 	additive_expression {
 		$$ = $1;
 	}
-	| shift_expression LEFT_OP additive_expression {
-		//<<
-		$$ = create_tree("shift_expression",3,$1,$2,$3);
-	}
-	| shift_expression RIGHT_OP additive_expression {
-		//<<
-		$$ = create_tree("shift_expression",3,$1,$2,$3);
-	}
-	;
-
-/*关系表达式*/
-relational_expression:
-	shift_expression {
-		$$ = $1;
-	}
-	| relational_expression '<' shift_expression {
+	| relational_expression '<' additive_expression {
 		$$ = create_tree("relational_expression",3,$1,$2,$3);
 	}
-	| relational_expression '>' shift_expression {
+	| relational_expression '>' additive_expression {
 		$$ = create_tree("relational_expression",3,$1,$2,$3);
 	}
-	| relational_expression LE_OP shift_expression {
+	| relational_expression LE_OP additive_expression {
 		// <=
 		$$ = create_tree("relational_expression",3,$1,$2,$3);
 	}
-	| relational_expression GE_OP shift_expression {
+	| relational_expression GE_OP additive_expression {
 		// >=
 		$$ = create_tree("relational_expression",3,$1,$2,$3);
 	}
@@ -322,36 +305,12 @@ assignment_operator:
 		// /=
 		$$ = create_tree("assignment_operator",1,$1);
 	}
-	| MOD_ASSIGN {
-		// %=
-		$$ = create_tree("assignment_operator",1,$1);
-	}
 	| ADD_ASSIGN {
 		// +=
 		$$ = create_tree("assignment_operator",1,$1);
 	}
 	| SUB_ASSIGN {
 		// -=
-		$$ = create_tree("assignment_operator",1,$1);
-	}
-	| LEFT_ASSIGN {
-		// <<=
-		$$ = create_tree("assignment_operator",1,$1);
-	}
-	| RIGHT_ASSIGN {
-		// >>=
-		$$ = create_tree("assignment_operator",1,$1);
-	}
-	| AND_ASSIGN {
-		// &=
-		$$ = create_tree("assignment_operator",1,$1);
-	}
-	| XOR_ASSIGN {
-		// ^=
-		$$ = create_tree("assignment_operator",1,$1);
-	}
-	| OR_ASSIGN {
-		// |=
 		$$ = create_tree("assignment_operator",1,$1);
 	}
 	;
