@@ -1,6 +1,5 @@
-#line 2 "lex.yy.cpp"
 
-#line 4 "lex.yy.cpp"
+#line 3 "lex.yy.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -491,9 +490,9 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "syntax.l"
+#line 1 "../lex/syntax.l"
 /* 把注释去掉 */
-#line 4 "syntax.l"
+#line 4 "../lex/syntax.l"
 #include <iostream>
 #include <stdio.h>
 #include "../source/StaticFlags.h"
@@ -501,12 +500,88 @@ using namespace std;
 #include "../source/TableNode.h"
 auto* globalPtr = new TableNode();
 // Old Chen
-#line 505 "lex.yy.cpp"
+enum {
+    USELESSSSSS,
+    ID,
+    NUMBER,
+    RELOP,
+    NEWLINE,
+    ERRORCHAR,
+    MAIN,
+    // Type check
+    TYPE_NOT_MATCH,
+    TYPE_NOT_SUPPORT,
+    TYPE_MATCH,
+
+    //y.txt
+    IF,
+    ELSE,
+    WHILE,
+    DO,
+    FOR,
+    CONTINUE,
+    BREAK,
+    RETURN,
+    CHAR,
+    INT,
+    DOUBLE,
+    VOID,
+    BOOL,
+    SUB_ASSIGN,
+    ADD_ASSIGN,
+    DIV_ASSIGN,
+    MUL_ASSIGN,
+    AND_OP,
+    OR_OP,
+    INC_OP,
+    DEC_OP,
+    LE_OP,
+    GE_OP,
+    EQ_OP,
+    NE_OP,
+    CONST,
+    CONSTANT_INT,
+    CONSTANT_DOUBLE,
+
+    IDENTIFIER,
+
+
+
+    //USELESS  12.03  to the end
+    ADD,
+    DEC,
+    MUL,
+    DIV,
+    //bool < > <= >= == !=
+    LET,
+    MOT,
+    LEET,
+    MOET,
+    EQU,
+    NEQU,
+    AND,
+    OR,
+    MOD,
+    MI,
+    LP,
+    RP,
+    LSPACE,
+    RSPACE,
+    SEMICOLON,
+    COMMA,
+    POINT,
+    TRUE,
+    FALSE,
+    TYPE,
+    ASSGIN,
+};
+
+#line 580 "lex.yy.c"
 /* 状态（或条件）定义可以定义在这里
  * INITIAL是一个默认的状态，不需要定义
  */
 
-#line 510 "lex.yy.cpp"
+#line 585 "lex.yy.c"
 
 #define INITIAL 0
 #define COMMENT 1
@@ -726,9 +801,9 @@ YY_DECL
 		}
 
 	{
-#line 29 "syntax.l"
+#line 105 "../lex/syntax.l"
 
-#line 732 "lex.yy.cpp"
+#line 807 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -787,188 +862,188 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 30 "syntax.l"
+#line 106 "../lex/syntax.l"
 {BEGIN INITIAL;}
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 31 "syntax.l"
+#line 107 "../lex/syntax.l"
 {;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 32 "syntax.l"
+#line 108 "../lex/syntax.l"
 {BEGIN COMMENT2;}
 	YY_BREAK
 case 4:
 /* rule 4 can match eol */
 YY_RULE_SETUP
-#line 33 "syntax.l"
+#line 109 "../lex/syntax.l"
 {BEGIN INITIAL;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 34 "syntax.l"
+#line 110 "../lex/syntax.l"
 {;}
 	YY_BREAK
 case 6:
 /* rule 6 can match eol */
 YY_RULE_SETUP
-#line 35 "syntax.l"
+#line 111 "../lex/syntax.l"
 {;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 36 "syntax.l"
+#line 112 "../lex/syntax.l"
 {return (VOID);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 37 "syntax.l"
+#line 113 "../lex/syntax.l"
 {return (TYPE);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 38 "syntax.l"
+#line 114 "../lex/syntax.l"
 {    return (WHILE);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 39 "syntax.l"
+#line 115 "../lex/syntax.l"
 {   return (FOR);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 40 "syntax.l"
+#line 116 "../lex/syntax.l"
 {return (DO);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 41 "syntax.l"
+#line 117 "../lex/syntax.l"
 {return (IF);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 42 "syntax.l"
+#line 118 "../lex/syntax.l"
 {return (ELSE);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 43 "syntax.l"
+#line 119 "../lex/syntax.l"
 {return (MAIN);}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 44 "syntax.l"
+#line 120 "../lex/syntax.l"
 {return (RETURN);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 46 "syntax.l"
+#line 122 "../lex/syntax.l"
 {return (ID);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 47 "syntax.l"
+#line 123 "../lex/syntax.l"
 {return (NUMBER);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 48 "syntax.l"
+#line 124 "../lex/syntax.l"
 {return (LET);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 49 "syntax.l"
+#line 125 "../lex/syntax.l"
 {return (LEET);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 50 "syntax.l"
+#line 126 "../lex/syntax.l"
 {return (ASSGIN);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 51 "syntax.l"
+#line 127 "../lex/syntax.l"
 {return (MOT);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 52 "syntax.l"
+#line 128 "../lex/syntax.l"
 {return (MOET);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 53 "syntax.l"
+#line 129 "../lex/syntax.l"
 {return (EQU);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 54 "syntax.l"
+#line 130 "../lex/syntax.l"
 {return (NEQU);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 55 "syntax.l"
+#line 131 "../lex/syntax.l"
 {return (LP);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 56 "syntax.l"
+#line 132 "../lex/syntax.l"
 {return (RP);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 57 "syntax.l"
+#line 133 "../lex/syntax.l"
 {return (LSPACE);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 58 "syntax.l"
+#line 134 "../lex/syntax.l"
 {return (RSPACE);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 59 "syntax.l"
+#line 135 "../lex/syntax.l"
 {return (ADD);}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 60 "syntax.l"
+#line 136 "../lex/syntax.l"
 {return (DEC);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 61 "syntax.l"
+#line 137 "../lex/syntax.l"
 {return (MUL);}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 62 "syntax.l"
+#line 138 "../lex/syntax.l"
 {return (DIV);}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 63 "syntax.l"
+#line 139 "../lex/syntax.l"
 {return (SEMICOLON);}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 64 "syntax.l"
+#line 140 "../lex/syntax.l"
 {return (POINT);}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 65 "syntax.l"
+#line 141 "../lex/syntax.l"
 {return ERRORCHAR;}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 69 "syntax.l"
+#line 145 "../lex/syntax.l"
 ECHO;
 	YY_BREAK
-#line 972 "lex.yy.cpp"
+#line 1047 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(COMMENT):
 case YY_STATE_EOF(COMMENT2):
@@ -1976,7 +2051,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 69 "syntax.l"
+#line 145 "../lex/syntax.l"
 
 
 
