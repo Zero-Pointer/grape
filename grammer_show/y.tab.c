@@ -66,12 +66,13 @@
 
 
 /* First part of user prologue.  */
-#line 1 "compiler.y"
+#line 1 "../yacc/compiler.y"
 
 #include <cstdlib>
 #include <cstdio>
 #include <string>
-#include "tree.h"
+#include "../source/tree.h"
+// #include "../source/StaticFlags.h"
 
 using namespace std;
 
@@ -85,7 +86,7 @@ extern int yylineno;
 int yylex(void);
 void yyerror(const char*);
 
-#line 89 "y.tab.c"
+#line 90 "y.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -170,11 +171,11 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 20 "compiler.y"
+#line 21 "../yacc/compiler.y"
 
 	struct gramTree* gt;
 
-#line 178 "y.tab.c"
+#line 179 "y.tab.c"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -553,21 +554,21 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int16 yyrline[] =
 {
-       0,    58,    58,    65,    69,    75,    80,    87,    92,    99,
-     102,   106,   110,   114,   118,   125,   128,   135,   139,   143,
-     147,   154,   157,   160,   163,   170,   173,   176,   179,   186,
-     189,   192,   199,   202,   205,   208,   212,   220,   223,   227,
-     234,   237,   244,   247,   254,   257,   264,   267,   275,   278,
-     286,   290,   297,   300,   304,   308,   312,   320,   324,   332,
-     335,   342,   345,   351,   354,   362,   365,   368,   371,   374,
-     382,   386,   390,   395,   399,   403,   407,   411,   420,   423,
-     429,   432,   435,   441,   444,   450,   453,   456,   459,   462,
-     465,   468,   471,   474,   477,   480,   487,   490,   494,   501,
-     504,   507,   510,   516,   522,   525,   531,   534,   541,   544,
-     547,   550,   553,   556,   563,   566,   573,   576,   582,   585,
-     591,   594,   600,   603,   610,   613,   616,   623,   626,   629,
-     632,   635,   638,   645,   648,   651,   654,   660,   663,   669,
-     674,   682,   685,   691,   694
+       0,    59,    59,    66,    70,    76,    81,    88,    93,   100,
+     103,   107,   111,   115,   119,   126,   129,   136,   140,   144,
+     148,   155,   158,   161,   164,   171,   174,   177,   180,   187,
+     190,   193,   200,   203,   206,   209,   213,   221,   224,   228,
+     235,   238,   245,   248,   255,   258,   265,   268,   276,   279,
+     287,   291,   298,   301,   305,   309,   313,   321,   325,   333,
+     336,   343,   346,   352,   355,   363,   366,   369,   372,   375,
+     383,   387,   391,   396,   400,   404,   408,   412,   421,   424,
+     430,   433,   436,   442,   445,   451,   454,   457,   460,   463,
+     466,   469,   472,   475,   478,   481,   488,   491,   495,   502,
+     505,   508,   511,   517,   523,   526,   532,   535,   542,   545,
+     548,   551,   554,   557,   564,   567,   574,   577,   583,   586,
+     592,   595,   601,   604,   611,   614,   617,   624,   627,   630,
+     633,   636,   639,   646,   649,   652,   655,   661,   664,   670,
+     675,   683,   686,   692,   695
 };
 #endif
 
@@ -1614,43 +1615,43 @@ yyreduce:
   switch (yyn)
     {
   case 2:
-#line 58 "compiler.y"
+#line 59 "../yacc/compiler.y"
                          {
 		root = create_tree("Program",1,(yyvsp[0].gt));
 	}
-#line 1622 "y.tab.c"
+#line 1623 "y.tab.c"
     break;
 
   case 3:
-#line 65 "compiler.y"
+#line 66 "../yacc/compiler.y"
                    {
 		(yyval.gt) = create_tree("primary_expression",1,(yyvsp[0].gt));
 	}
-#line 1630 "y.tab.c"
+#line 1631 "y.tab.c"
     break;
 
   case 4:
-#line 69 "compiler.y"
+#line 70 "../yacc/compiler.y"
              {
 		(yyval.gt) = create_tree("primary_expression",1,(yyvsp[0].gt));
 		// $$->type = "bool";
 		// $$->int_value = $1->int_value;
 	}
-#line 1640 "y.tab.c"
+#line 1641 "y.tab.c"
     break;
 
   case 5:
-#line 75 "compiler.y"
+#line 76 "../yacc/compiler.y"
               {
 		(yyval.gt) = create_tree("primary_expression",1,(yyvsp[0].gt));
 		// $$->type = "bool";
 		// $$->int_value = $1->int_value;
 	}
-#line 1650 "y.tab.c"
+#line 1651 "y.tab.c"
     break;
 
   case 6:
-#line 80 "compiler.y"
+#line 81 "../yacc/compiler.y"
                        {
 		//printf("%d",$1->int_value);
 		(yyval.gt) = create_tree("primary_expression",1,(yyvsp[0].gt));
@@ -1658,1153 +1659,1153 @@ yyreduce:
 		// $$->int_value = $1->int_value;
 
 	}
-#line 1662 "y.tab.c"
+#line 1663 "y.tab.c"
     break;
 
   case 7:
-#line 87 "compiler.y"
+#line 88 "../yacc/compiler.y"
                           {
 		(yyval.gt) = create_tree("primary_expression",1,(yyvsp[0].gt));
 		// $$->type = "double";
 		// $$->double_value = $1->double_value;
 	}
-#line 1672 "y.tab.c"
+#line 1673 "y.tab.c"
     break;
 
   case 8:
-#line 92 "compiler.y"
+#line 93 "../yacc/compiler.y"
                             {
 		(yyval.gt) = create_tree("primary_expression",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1680 "y.tab.c"
+#line 1681 "y.tab.c"
     break;
 
   case 9:
-#line 99 "compiler.y"
+#line 100 "../yacc/compiler.y"
                           {
 		(yyval.gt) = (yyvsp[0].gt);
 	}
-#line 1688 "y.tab.c"
+#line 1689 "y.tab.c"
     break;
 
   case 10:
-#line 102 "compiler.y"
+#line 103 "../yacc/compiler.y"
                                                      {
 		(yyval.gt) = create_tree("postfix_expression",4,(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 		//数组调用
 	}
-#line 1697 "y.tab.c"
+#line 1698 "y.tab.c"
     break;
 
   case 11:
-#line 106 "compiler.y"
+#line 107 "../yacc/compiler.y"
                                           {
 		(yyval.gt) = create_tree("postfix_expression",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 		//函数调用
 	}
-#line 1706 "y.tab.c"
+#line 1707 "y.tab.c"
     break;
 
   case 12:
-#line 110 "compiler.y"
+#line 111 "../yacc/compiler.y"
                                                                    {
 		(yyval.gt) = create_tree("postfix_expression",4,(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 		//函数调用
 	}
-#line 1715 "y.tab.c"
+#line 1716 "y.tab.c"
     break;
 
   case 13:
-#line 114 "compiler.y"
+#line 115 "../yacc/compiler.y"
                                          {
 		//++
 		(yyval.gt) = create_tree("postfix_expression",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1724 "y.tab.c"
+#line 1725 "y.tab.c"
     break;
 
   case 14:
-#line 118 "compiler.y"
+#line 119 "../yacc/compiler.y"
                                          {
 		//--
 		(yyval.gt) = create_tree("postfix_expression",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1733 "y.tab.c"
+#line 1734 "y.tab.c"
     break;
 
   case 15:
-#line 125 "compiler.y"
+#line 126 "../yacc/compiler.y"
                              {
 		(yyval.gt) = (yyvsp[0].gt);
 	}
-#line 1741 "y.tab.c"
+#line 1742 "y.tab.c"
     break;
 
   case 16:
-#line 128 "compiler.y"
+#line 129 "../yacc/compiler.y"
                                                                    {
 		(yyval.gt) = create_tree("argument_expression_list",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1749 "y.tab.c"
+#line 1750 "y.tab.c"
     break;
 
   case 17:
-#line 135 "compiler.y"
+#line 136 "../yacc/compiler.y"
                           {
 		//printf("postfix");
 		(yyval.gt) = (yyvsp[0].gt);
 	}
-#line 1758 "y.tab.c"
+#line 1759 "y.tab.c"
     break;
 
   case 18:
-#line 139 "compiler.y"
+#line 140 "../yacc/compiler.y"
                                        {
 		//++
 		(yyval.gt) = create_tree("unary_expression",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1767 "y.tab.c"
+#line 1768 "y.tab.c"
     break;
 
   case 19:
-#line 143 "compiler.y"
+#line 144 "../yacc/compiler.y"
                                        {
 		//--
 		(yyval.gt) = create_tree("unary_expression",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1776 "y.tab.c"
+#line 1777 "y.tab.c"
     break;
 
   case 20:
-#line 147 "compiler.y"
+#line 148 "../yacc/compiler.y"
                                                {
 		(yyval.gt) = create_tree("unary_expression",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1784 "y.tab.c"
+#line 1785 "y.tab.c"
     break;
 
   case 21:
-#line 154 "compiler.y"
+#line 155 "../yacc/compiler.y"
             {
 		(yyval.gt) = create_tree("unary_operator",1,(yyvsp[0].gt));
 	}
-#line 1792 "y.tab.c"
+#line 1793 "y.tab.c"
     break;
 
   case 22:
-#line 157 "compiler.y"
+#line 158 "../yacc/compiler.y"
               {
 		(yyval.gt) = create_tree("unary_operator",1,(yyvsp[0].gt));
 	}
-#line 1800 "y.tab.c"
+#line 1801 "y.tab.c"
     break;
 
   case 23:
-#line 160 "compiler.y"
+#line 161 "../yacc/compiler.y"
               {
 		(yyval.gt) = create_tree("unary_operator",1,(yyvsp[0].gt));
 	}
-#line 1808 "y.tab.c"
+#line 1809 "y.tab.c"
     break;
 
   case 24:
-#line 163 "compiler.y"
+#line 164 "../yacc/compiler.y"
               {
 		(yyval.gt) = create_tree("unary_operator",1,(yyvsp[0].gt));
 	}
-#line 1816 "y.tab.c"
+#line 1817 "y.tab.c"
     break;
 
   case 25:
-#line 170 "compiler.y"
+#line 171 "../yacc/compiler.y"
                          {
 		(yyval.gt) = (yyvsp[0].gt);
 	}
-#line 1824 "y.tab.c"
+#line 1825 "y.tab.c"
     break;
 
   case 26:
-#line 173 "compiler.y"
+#line 174 "../yacc/compiler.y"
                                                          {
 		(yyval.gt) = create_tree("multiplicative_expression",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1832 "y.tab.c"
+#line 1833 "y.tab.c"
     break;
 
   case 27:
-#line 176 "compiler.y"
+#line 177 "../yacc/compiler.y"
                                                          {
 		(yyval.gt) = create_tree("multiplicative_expression",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1840 "y.tab.c"
+#line 1841 "y.tab.c"
     break;
 
   case 28:
-#line 179 "compiler.y"
+#line 180 "../yacc/compiler.y"
                                                          {
 		(yyval.gt) = create_tree("multiplicative_expression",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1848 "y.tab.c"
+#line 1849 "y.tab.c"
     break;
 
   case 29:
-#line 186 "compiler.y"
+#line 187 "../yacc/compiler.y"
                                    {
 		(yyval.gt) = (yyvsp[0].gt);
 	}
-#line 1856 "y.tab.c"
+#line 1857 "y.tab.c"
     break;
 
   case 30:
-#line 189 "compiler.y"
+#line 190 "../yacc/compiler.y"
                                                             {
 		(yyval.gt) = create_tree("additive_expression",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1864 "y.tab.c"
+#line 1865 "y.tab.c"
     break;
 
   case 31:
-#line 192 "compiler.y"
+#line 193 "../yacc/compiler.y"
                                                             {
 		(yyval.gt) = create_tree("additive_expression",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1872 "y.tab.c"
+#line 1873 "y.tab.c"
     break;
 
   case 32:
-#line 199 "compiler.y"
+#line 200 "../yacc/compiler.y"
                             {
 		(yyval.gt) = (yyvsp[0].gt);
 	}
-#line 1880 "y.tab.c"
+#line 1881 "y.tab.c"
     break;
 
   case 33:
-#line 202 "compiler.y"
+#line 203 "../yacc/compiler.y"
                                                         {
 		(yyval.gt) = create_tree("relational_expression",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1888 "y.tab.c"
+#line 1889 "y.tab.c"
     break;
 
   case 34:
-#line 205 "compiler.y"
+#line 206 "../yacc/compiler.y"
                                                         {
 		(yyval.gt) = create_tree("relational_expression",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1896 "y.tab.c"
+#line 1897 "y.tab.c"
     break;
 
   case 35:
-#line 208 "compiler.y"
+#line 209 "../yacc/compiler.y"
                                                           {
 		// <=
 		(yyval.gt) = create_tree("relational_expression",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1905 "y.tab.c"
+#line 1906 "y.tab.c"
     break;
 
   case 36:
-#line 212 "compiler.y"
+#line 213 "../yacc/compiler.y"
                                                           {
 		// >=
 		(yyval.gt) = create_tree("relational_expression",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1914 "y.tab.c"
+#line 1915 "y.tab.c"
     break;
 
   case 37:
-#line 220 "compiler.y"
+#line 221 "../yacc/compiler.y"
                               {
 		(yyval.gt) = (yyvsp[0].gt);
 	}
-#line 1922 "y.tab.c"
+#line 1923 "y.tab.c"
     break;
 
   case 38:
-#line 223 "compiler.y"
+#line 224 "../yacc/compiler.y"
                                                           {
 		// ==
 		(yyval.gt) = create_tree("equality_expression",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1931 "y.tab.c"
+#line 1932 "y.tab.c"
     break;
 
   case 39:
-#line 227 "compiler.y"
+#line 228 "../yacc/compiler.y"
                                                           {
 		// !=
 		(yyval.gt) = create_tree("equality_expression",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1940 "y.tab.c"
+#line 1941 "y.tab.c"
     break;
 
   case 40:
-#line 234 "compiler.y"
+#line 235 "../yacc/compiler.y"
                             {
 		(yyval.gt) = (yyvsp[0].gt);
 	}
-#line 1948 "y.tab.c"
+#line 1949 "y.tab.c"
     break;
 
   case 41:
-#line 237 "compiler.y"
+#line 238 "../yacc/compiler.y"
                                                  {
 		(yyval.gt) = create_tree("and_expression",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1956 "y.tab.c"
+#line 1957 "y.tab.c"
     break;
 
   case 42:
-#line 244 "compiler.y"
+#line 245 "../yacc/compiler.y"
                        {
 		(yyval.gt) = (yyvsp[0].gt);
 	}
-#line 1964 "y.tab.c"
+#line 1965 "y.tab.c"
     break;
 
   case 43:
-#line 247 "compiler.y"
+#line 248 "../yacc/compiler.y"
                                                      {
 		(yyval.gt) = create_tree("exclusive_or_expression",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1972 "y.tab.c"
+#line 1973 "y.tab.c"
     break;
 
   case 44:
-#line 254 "compiler.y"
+#line 255 "../yacc/compiler.y"
                                 {
 		(yyval.gt) = (yyvsp[0].gt);
 	}
-#line 1980 "y.tab.c"
+#line 1981 "y.tab.c"
     break;
 
   case 45:
-#line 257 "compiler.y"
+#line 258 "../yacc/compiler.y"
                                                               {
 		(yyval.gt) = create_tree("inclusive_or_expression",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 1988 "y.tab.c"
+#line 1989 "y.tab.c"
     break;
 
   case 46:
-#line 264 "compiler.y"
+#line 265 "../yacc/compiler.y"
                                 {
 		(yyval.gt) = (yyvsp[0].gt);
 	}
-#line 1996 "y.tab.c"
+#line 1997 "y.tab.c"
     break;
 
   case 47:
-#line 267 "compiler.y"
+#line 268 "../yacc/compiler.y"
                                                                 {
 		//&&
 		(yyval.gt) = create_tree("logical_and_expression",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2005 "y.tab.c"
+#line 2006 "y.tab.c"
     break;
 
   case 48:
-#line 275 "compiler.y"
+#line 276 "../yacc/compiler.y"
                                {
 		(yyval.gt) = (yyvsp[0].gt);
 	}
-#line 2013 "y.tab.c"
+#line 2014 "y.tab.c"
     break;
 
   case 49:
-#line 278 "compiler.y"
+#line 279 "../yacc/compiler.y"
                                                              {
 		//||
 		(yyval.gt) = create_tree("logical_or_expression",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2022 "y.tab.c"
+#line 2023 "y.tab.c"
     break;
 
   case 50:
-#line 286 "compiler.y"
+#line 287 "../yacc/compiler.y"
                               {
 		//条件表达式
 		(yyval.gt) = (yyvsp[0].gt);
 	}
-#line 2031 "y.tab.c"
+#line 2032 "y.tab.c"
     break;
 
   case 51:
-#line 290 "compiler.y"
+#line 291 "../yacc/compiler.y"
                                                                      {
 		(yyval.gt) = create_tree("assignment_expression",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2039 "y.tab.c"
+#line 2040 "y.tab.c"
     break;
 
   case 52:
-#line 297 "compiler.y"
+#line 298 "../yacc/compiler.y"
             {
 		(yyval.gt) = create_tree("assignment_operator",1,(yyvsp[0].gt));
 	}
-#line 2047 "y.tab.c"
+#line 2048 "y.tab.c"
     break;
 
   case 53:
-#line 300 "compiler.y"
+#line 301 "../yacc/compiler.y"
                      {
 		//*=
 		(yyval.gt) = create_tree("assignment_operator",1,(yyvsp[0].gt));
 	}
-#line 2056 "y.tab.c"
+#line 2057 "y.tab.c"
     break;
 
   case 54:
-#line 304 "compiler.y"
+#line 305 "../yacc/compiler.y"
                      {
 		// /=
 		(yyval.gt) = create_tree("assignment_operator",1,(yyvsp[0].gt));
 	}
-#line 2065 "y.tab.c"
+#line 2066 "y.tab.c"
     break;
 
   case 55:
-#line 308 "compiler.y"
+#line 309 "../yacc/compiler.y"
                      {
 		// +=
 		(yyval.gt) = create_tree("assignment_operator",1,(yyvsp[0].gt));
 	}
-#line 2074 "y.tab.c"
+#line 2075 "y.tab.c"
     break;
 
   case 56:
-#line 312 "compiler.y"
+#line 313 "../yacc/compiler.y"
                      {
 		// -=
 		(yyval.gt) = create_tree("assignment_operator",1,(yyvsp[0].gt));
 	}
-#line 2083 "y.tab.c"
+#line 2084 "y.tab.c"
     break;
 
   case 57:
-#line 320 "compiler.y"
+#line 321 "../yacc/compiler.y"
                               {
 		//赋值表达式
 		(yyval.gt) = (yyvsp[0].gt);
 	}
-#line 2092 "y.tab.c"
+#line 2093 "y.tab.c"
     break;
 
   case 58:
-#line 324 "compiler.y"
+#line 325 "../yacc/compiler.y"
                                                {
 		//逗号表达式
 		(yyval.gt) = create_tree("expression",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2101 "y.tab.c"
+#line 2102 "y.tab.c"
     break;
 
   case 59:
-#line 332 "compiler.y"
+#line 333 "../yacc/compiler.y"
                            {
 		(yyval.gt) = create_tree("declaration",2,(yyvsp[-1].gt),(yyvsp[0].gt)); //?
 	}
-#line 2109 "y.tab.c"
+#line 2110 "y.tab.c"
     break;
 
   case 60:
-#line 335 "compiler.y"
+#line 336 "../yacc/compiler.y"
                                                   {
 		(yyval.gt) = create_tree("declaration",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2117 "y.tab.c"
+#line 2118 "y.tab.c"
     break;
 
   case 61:
-#line 342 "compiler.y"
+#line 343 "../yacc/compiler.y"
                         {
 		(yyval.gt) = (yyvsp[0].gt);
 	}
-#line 2125 "y.tab.c"
+#line 2126 "y.tab.c"
     break;
 
   case 62:
-#line 345 "compiler.y"
+#line 346 "../yacc/compiler.y"
                                                    {
 		(yyval.gt) = create_tree("init_declarator_list",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2133 "y.tab.c"
+#line 2134 "y.tab.c"
     break;
 
   case 63:
-#line 351 "compiler.y"
+#line 352 "../yacc/compiler.y"
                    {
 		(yyval.gt) = (yyvsp[0].gt);
 	}
-#line 2141 "y.tab.c"
+#line 2142 "y.tab.c"
     break;
 
   case 64:
-#line 354 "compiler.y"
+#line 355 "../yacc/compiler.y"
                                      {
 		(yyval.gt) = create_tree("init_declarator",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2149 "y.tab.c"
+#line 2150 "y.tab.c"
     break;
 
   case 65:
-#line 362 "compiler.y"
+#line 363 "../yacc/compiler.y"
              {
 		(yyval.gt) = create_tree("type_specifier",1,(yyvsp[0].gt));
 	}
-#line 2157 "y.tab.c"
+#line 2158 "y.tab.c"
     break;
 
   case 66:
-#line 365 "compiler.y"
+#line 366 "../yacc/compiler.y"
                {
 		(yyval.gt) = create_tree("type_specifier",1,(yyvsp[0].gt));
 	}
-#line 2165 "y.tab.c"
+#line 2166 "y.tab.c"
     break;
 
   case 67:
-#line 368 "compiler.y"
+#line 369 "../yacc/compiler.y"
               {
 		(yyval.gt) = create_tree("type_specifier",1,(yyvsp[0].gt));
 	}
-#line 2173 "y.tab.c"
+#line 2174 "y.tab.c"
     break;
 
   case 68:
-#line 371 "compiler.y"
+#line 372 "../yacc/compiler.y"
                  {
 		(yyval.gt) = create_tree("type_specifier",1,(yyvsp[0].gt));
 	}
-#line 2181 "y.tab.c"
+#line 2182 "y.tab.c"
     break;
 
   case 69:
-#line 374 "compiler.y"
+#line 375 "../yacc/compiler.y"
                {
 		(yyval.gt) = create_tree("type_specifier",1,(yyvsp[0].gt));
 	}
-#line 2189 "y.tab.c"
+#line 2190 "y.tab.c"
     break;
 
   case 70:
-#line 382 "compiler.y"
+#line 383 "../yacc/compiler.y"
                    {
 		//变量
 		(yyval.gt) = create_tree("declarator",1,(yyvsp[0].gt));
 	}
-#line 2198 "y.tab.c"
+#line 2199 "y.tab.c"
     break;
 
   case 71:
-#line 386 "compiler.y"
+#line 387 "../yacc/compiler.y"
                              {
 		//.....
 		(yyval.gt) = create_tree("declarator",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2207 "y.tab.c"
+#line 2208 "y.tab.c"
     break;
 
   case 72:
-#line 390 "compiler.y"
+#line 391 "../yacc/compiler.y"
                                                    {
 		//数组
 		//printf("assignment_expression");
 		(yyval.gt) = create_tree("declarator",4,(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2217 "y.tab.c"
+#line 2218 "y.tab.c"
     break;
 
   case 73:
-#line 395 "compiler.y"
+#line 396 "../yacc/compiler.y"
                                  {
 		//....
 		(yyval.gt) = create_tree("declarator",4,(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2226 "y.tab.c"
+#line 2227 "y.tab.c"
     break;
 
   case 74:
-#line 399 "compiler.y"
+#line 400 "../yacc/compiler.y"
                              {
 		//数组
 		(yyval.gt) = create_tree("declarator",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2235 "y.tab.c"
+#line 2236 "y.tab.c"
     break;
 
   case 75:
-#line 403 "compiler.y"
+#line 404 "../yacc/compiler.y"
                                             {
 		//函数
 		(yyval.gt) = create_tree("declarator",4,(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2244 "y.tab.c"
+#line 2245 "y.tab.c"
     break;
 
   case 76:
-#line 407 "compiler.y"
+#line 408 "../yacc/compiler.y"
                                              {
 		//函数
 		(yyval.gt) = create_tree("declarator",4,(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2253 "y.tab.c"
+#line 2254 "y.tab.c"
     break;
 
   case 77:
-#line 411 "compiler.y"
+#line 412 "../yacc/compiler.y"
                              {
 		//函数
 		(yyval.gt) = create_tree("declarator",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2262 "y.tab.c"
+#line 2263 "y.tab.c"
     break;
 
   case 78:
-#line 420 "compiler.y"
+#line 421 "../yacc/compiler.y"
                               {
 		(yyval.gt) = create_tree("parameter_list",1,(yyvsp[0].gt));
 	}
-#line 2270 "y.tab.c"
+#line 2271 "y.tab.c"
     break;
 
   case 79:
-#line 423 "compiler.y"
+#line 424 "../yacc/compiler.y"
                                                    {
 		(yyval.gt) = create_tree("parameter_list",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2278 "y.tab.c"
+#line 2279 "y.tab.c"
     break;
 
   case 80:
-#line 429 "compiler.y"
+#line 430 "../yacc/compiler.y"
                                   {
 		(yyval.gt) = create_tree("parameter_declaration",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2286 "y.tab.c"
+#line 2287 "y.tab.c"
     break;
 
   case 81:
-#line 432 "compiler.y"
+#line 433 "../yacc/compiler.y"
                                              {
 		(yyval.gt) = create_tree("parameter_declaration",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2294 "y.tab.c"
+#line 2295 "y.tab.c"
     break;
 
   case 82:
-#line 435 "compiler.y"
+#line 436 "../yacc/compiler.y"
                          {
 		(yyval.gt) = create_tree("parameter_declaration",1,(yyvsp[0].gt));
 	}
-#line 2302 "y.tab.c"
+#line 2303 "y.tab.c"
     break;
 
   case 83:
-#line 441 "compiler.y"
+#line 442 "../yacc/compiler.y"
                    {
 		(yyval.gt) = create_tree("identifier_list",1,(yyvsp[0].gt));
 	}
-#line 2310 "y.tab.c"
+#line 2311 "y.tab.c"
     break;
 
   case 84:
-#line 444 "compiler.y"
+#line 445 "../yacc/compiler.y"
                                          {
 		(yyval.gt) = create_tree("identifier_list",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2318 "y.tab.c"
+#line 2319 "y.tab.c"
     break;
 
   case 85:
-#line 450 "compiler.y"
+#line 451 "../yacc/compiler.y"
                                     {
 		(yyval.gt) = create_tree("abstract_declarator",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2326 "y.tab.c"
+#line 2327 "y.tab.c"
     break;
 
   case 86:
-#line 453 "compiler.y"
+#line 454 "../yacc/compiler.y"
                   {
 		(yyval.gt) = create_tree("abstract_declarator",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2334 "y.tab.c"
+#line 2335 "y.tab.c"
     break;
 
   case 87:
-#line 456 "compiler.y"
+#line 457 "../yacc/compiler.y"
                                         {
 		(yyval.gt) = create_tree("abstract_declarator",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2342 "y.tab.c"
+#line 2343 "y.tab.c"
     break;
 
   case 88:
-#line 459 "compiler.y"
+#line 460 "../yacc/compiler.y"
                                       {
 		(yyval.gt) = create_tree("abstract_declarator",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2350 "y.tab.c"
+#line 2351 "y.tab.c"
     break;
 
   case 89:
-#line 462 "compiler.y"
+#line 463 "../yacc/compiler.y"
                                                             {
 		(yyval.gt) = create_tree("abstract_declarator",4,(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2358 "y.tab.c"
+#line 2359 "y.tab.c"
     break;
 
   case 90:
-#line 465 "compiler.y"
+#line 466 "../yacc/compiler.y"
                       {
 		(yyval.gt) = create_tree("abstract_declarator",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2366 "y.tab.c"
+#line 2367 "y.tab.c"
     break;
 
   case 91:
-#line 468 "compiler.y"
+#line 469 "../yacc/compiler.y"
                                           {
 		(yyval.gt) = create_tree("abstract_declarator",4,(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2374 "y.tab.c"
+#line 2375 "y.tab.c"
     break;
 
   case 92:
-#line 471 "compiler.y"
+#line 472 "../yacc/compiler.y"
                   {
 		(yyval.gt) = create_tree("abstract_declarator",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2382 "y.tab.c"
+#line 2383 "y.tab.c"
     break;
 
   case 93:
-#line 474 "compiler.y"
+#line 475 "../yacc/compiler.y"
                                  {
 		(yyval.gt) = create_tree("abstract_declarator",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2390 "y.tab.c"
+#line 2391 "y.tab.c"
     break;
 
   case 94:
-#line 477 "compiler.y"
+#line 478 "../yacc/compiler.y"
                                       {
 		(yyval.gt) = create_tree("abstract_declarator",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2398 "y.tab.c"
+#line 2399 "y.tab.c"
     break;
 
   case 95:
-#line 480 "compiler.y"
+#line 481 "../yacc/compiler.y"
                                                      {
 		(yyval.gt) = create_tree("abstract_declarator",4,(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2406 "y.tab.c"
+#line 2407 "y.tab.c"
     break;
 
   case 96:
-#line 487 "compiler.y"
+#line 488 "../yacc/compiler.y"
                               {
 		(yyval.gt) = create_tree("initializer",1,(yyvsp[0].gt));
 	}
-#line 2414 "y.tab.c"
+#line 2415 "y.tab.c"
     break;
 
   case 97:
-#line 490 "compiler.y"
+#line 491 "../yacc/compiler.y"
                                    {
 		//列表初始化 {1,1,1}
 		(yyval.gt) = create_tree("initializer",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2423 "y.tab.c"
+#line 2424 "y.tab.c"
     break;
 
   case 98:
-#line 494 "compiler.y"
+#line 495 "../yacc/compiler.y"
                                        {
 		//列表初始化 {1,1,1,}
 		(yyval.gt) = create_tree("initializer",4,(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2432 "y.tab.c"
+#line 2433 "y.tab.c"
     break;
 
   case 99:
-#line 501 "compiler.y"
+#line 502 "../yacc/compiler.y"
                     {
 		(yyval.gt) = create_tree("initializer_list",1,(yyvsp[0].gt));
 	}
-#line 2440 "y.tab.c"
+#line 2441 "y.tab.c"
     break;
 
   case 100:
-#line 504 "compiler.y"
+#line 505 "../yacc/compiler.y"
                                   {
 		(yyval.gt) = create_tree("initializer_list",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2448 "y.tab.c"
+#line 2449 "y.tab.c"
     break;
 
   case 101:
-#line 507 "compiler.y"
+#line 508 "../yacc/compiler.y"
                                            {
 		(yyval.gt) = create_tree("initializer_list",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2456 "y.tab.c"
+#line 2457 "y.tab.c"
     break;
 
   case 102:
-#line 510 "compiler.y"
+#line 511 "../yacc/compiler.y"
                                                        {
 		(yyval.gt) = create_tree("initializer_list",3,(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt));
 	}
-#line 2464 "y.tab.c"
+#line 2465 "y.tab.c"
     break;
 
   case 103:
-#line 516 "compiler.y"
+#line 517 "../yacc/compiler.y"
                             {
 		(yyval.gt) = create_tree("designation",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2472 "y.tab.c"
+#line 2473 "y.tab.c"
     break;
 
   case 104:
-#line 522 "compiler.y"
+#line 523 "../yacc/compiler.y"
                    {
 		(yyval.gt) = create_tree("designator_list",1,(yyvsp[0].gt));
 	}
-#line 2480 "y.tab.c"
+#line 2481 "y.tab.c"
     break;
 
   case 105:
-#line 525 "compiler.y"
+#line 526 "../yacc/compiler.y"
                                      {
 		(yyval.gt) = create_tree("designator_list",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2488 "y.tab.c"
+#line 2489 "y.tab.c"
     break;
 
   case 106:
-#line 531 "compiler.y"
+#line 532 "../yacc/compiler.y"
                                       {
 		(yyval.gt) = create_tree("designator",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2496 "y.tab.c"
+#line 2497 "y.tab.c"
     break;
 
   case 107:
-#line 534 "compiler.y"
+#line 535 "../yacc/compiler.y"
                          {
 		(yyval.gt) = create_tree("designator",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2504 "y.tab.c"
+#line 2505 "y.tab.c"
     break;
 
   case 108:
-#line 541 "compiler.y"
+#line 542 "../yacc/compiler.y"
                           {
 		(yyval.gt) = create_tree("statement",1,(yyvsp[0].gt));
 	}
-#line 2512 "y.tab.c"
+#line 2513 "y.tab.c"
     break;
 
   case 109:
-#line 544 "compiler.y"
+#line 545 "../yacc/compiler.y"
                              {
 		(yyval.gt) = create_tree("statement",1,(yyvsp[0].gt));
 	}
-#line 2520 "y.tab.c"
+#line 2521 "y.tab.c"
     break;
 
   case 110:
-#line 547 "compiler.y"
+#line 548 "../yacc/compiler.y"
                               {
 		(yyval.gt) = create_tree("statement",1,(yyvsp[0].gt));
 	}
-#line 2528 "y.tab.c"
+#line 2529 "y.tab.c"
     break;
 
   case 111:
-#line 550 "compiler.y"
+#line 551 "../yacc/compiler.y"
                               {
 		(yyval.gt) = create_tree("statement",1,(yyvsp[0].gt));
 	}
-#line 2536 "y.tab.c"
+#line 2537 "y.tab.c"
     break;
 
   case 112:
-#line 553 "compiler.y"
+#line 554 "../yacc/compiler.y"
                               {
 		(yyval.gt) = create_tree("statement",1,(yyvsp[0].gt));
 	}
-#line 2544 "y.tab.c"
+#line 2545 "y.tab.c"
     break;
 
   case 113:
-#line 556 "compiler.y"
+#line 557 "../yacc/compiler.y"
                          {
 		(yyval.gt) = create_tree("statement",1,(yyvsp[0].gt));
 	}
-#line 2552 "y.tab.c"
+#line 2553 "y.tab.c"
     break;
 
   case 114:
-#line 563 "compiler.y"
+#line 564 "../yacc/compiler.y"
                                  {
 		(yyval.gt) = create_tree("labeled_statement",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2560 "y.tab.c"
+#line 2561 "y.tab.c"
     break;
 
   case 115:
-#line 566 "compiler.y"
+#line 567 "../yacc/compiler.y"
                                                    {
 		(yyval.gt) = create_tree("labeled_statement",4,(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2568 "y.tab.c"
+#line 2569 "y.tab.c"
     break;
 
   case 116:
-#line 573 "compiler.y"
+#line 574 "../yacc/compiler.y"
                 {
 		(yyval.gt) = create_tree("compound_statement",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2576 "y.tab.c"
+#line 2577 "y.tab.c"
     break;
 
   case 117:
-#line 576 "compiler.y"
+#line 577 "../yacc/compiler.y"
                                   {
 		(yyval.gt) = create_tree("compound_statement",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2584 "y.tab.c"
+#line 2585 "y.tab.c"
     break;
 
   case 118:
-#line 582 "compiler.y"
+#line 583 "../yacc/compiler.y"
                    {
 		(yyval.gt) = create_tree("block_item_list",1,(yyvsp[0].gt));
 	}
-#line 2592 "y.tab.c"
+#line 2593 "y.tab.c"
     break;
 
   case 119:
-#line 585 "compiler.y"
+#line 586 "../yacc/compiler.y"
                                      {
 		(yyval.gt) = create_tree("block_item_list",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2600 "y.tab.c"
+#line 2601 "y.tab.c"
     break;
 
   case 120:
-#line 591 "compiler.y"
+#line 592 "../yacc/compiler.y"
                     {
 		(yyval.gt) = (yyvsp[0].gt);
 	}
-#line 2608 "y.tab.c"
+#line 2609 "y.tab.c"
     break;
 
   case 121:
-#line 594 "compiler.y"
+#line 595 "../yacc/compiler.y"
                     {
 		(yyval.gt) = (yyvsp[0].gt);
 	}
-#line 2616 "y.tab.c"
+#line 2617 "y.tab.c"
     break;
 
   case 122:
-#line 600 "compiler.y"
+#line 601 "../yacc/compiler.y"
             {
 		(yyval.gt) = create_tree("expression_statement",1,(yyvsp[0].gt));
 	}
-#line 2624 "y.tab.c"
+#line 2625 "y.tab.c"
     break;
 
   case 123:
-#line 603 "compiler.y"
+#line 604 "../yacc/compiler.y"
                          {
 		(yyval.gt) = create_tree("expression_statement",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2632 "y.tab.c"
+#line 2633 "y.tab.c"
     break;
 
   case 124:
-#line 610 "compiler.y"
+#line 611 "../yacc/compiler.y"
                                                               {
 		(yyval.gt) = create_tree("selection_statement",5,(yyvsp[-4].gt),(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2640 "y.tab.c"
+#line 2641 "y.tab.c"
     break;
 
   case 125:
-#line 613 "compiler.y"
+#line 614 "../yacc/compiler.y"
                                                      {
 		(yyval.gt) = create_tree("selection_statement",7,(yyvsp[-6].gt),(yyvsp[-5].gt),(yyvsp[-4].gt),(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2648 "y.tab.c"
+#line 2649 "y.tab.c"
     break;
 
   case 126:
-#line 616 "compiler.y"
+#line 617 "../yacc/compiler.y"
                                           {
 		(yyval.gt) = create_tree("selection_statement",5,(yyvsp[-4].gt),(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2656 "y.tab.c"
+#line 2657 "y.tab.c"
     break;
 
   case 127:
-#line 623 "compiler.y"
+#line 624 "../yacc/compiler.y"
                                            {
 		(yyval.gt) = create_tree("iteration_statement",5,(yyvsp[-4].gt),(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2664 "y.tab.c"
+#line 2665 "y.tab.c"
     break;
 
   case 128:
-#line 626 "compiler.y"
+#line 627 "../yacc/compiler.y"
                                                     {
 		(yyval.gt) = create_tree("iteration_statement",7,(yyvsp[-6].gt),(yyvsp[-5].gt),(yyvsp[-4].gt),(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2672 "y.tab.c"
+#line 2673 "y.tab.c"
     break;
 
   case 129:
-#line 629 "compiler.y"
+#line 630 "../yacc/compiler.y"
                                                                           {
 		(yyval.gt) = create_tree("iteration_statement",6,(yyvsp[-5].gt),(yyvsp[-4].gt),(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2680 "y.tab.c"
+#line 2681 "y.tab.c"
     break;
 
   case 130:
-#line 632 "compiler.y"
+#line 633 "../yacc/compiler.y"
                                                                                      {
 		(yyval.gt) = create_tree("iteration_statement",7,(yyvsp[-6].gt),(yyvsp[-5].gt),(yyvsp[-4].gt),(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2688 "y.tab.c"
+#line 2689 "y.tab.c"
     break;
 
   case 131:
-#line 635 "compiler.y"
+#line 636 "../yacc/compiler.y"
                                                                  {
 		(yyval.gt) = create_tree("iteration_statement",6,(yyvsp[-5].gt),(yyvsp[-4].gt),(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2696 "y.tab.c"
+#line 2697 "y.tab.c"
     break;
 
   case 132:
-#line 638 "compiler.y"
+#line 639 "../yacc/compiler.y"
                                                                             {
 		(yyval.gt) = create_tree("iteration_statement",7,(yyvsp[-6].gt),(yyvsp[-5].gt),(yyvsp[-4].gt),(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2704 "y.tab.c"
+#line 2705 "y.tab.c"
     break;
 
   case 133:
-#line 645 "compiler.y"
+#line 646 "../yacc/compiler.y"
                      {
 		(yyval.gt) = create_tree("jump_statement",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2712 "y.tab.c"
+#line 2713 "y.tab.c"
     break;
 
   case 134:
-#line 648 "compiler.y"
+#line 649 "../yacc/compiler.y"
                     {
 		(yyval.gt) = create_tree("jump_statement",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2720 "y.tab.c"
+#line 2721 "y.tab.c"
     break;
 
   case 135:
-#line 651 "compiler.y"
+#line 652 "../yacc/compiler.y"
                      {
 		(yyval.gt) = create_tree("jump_statement",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2728 "y.tab.c"
+#line 2729 "y.tab.c"
     break;
 
   case 136:
-#line 654 "compiler.y"
+#line 655 "../yacc/compiler.y"
                                 {
 		(yyval.gt) = create_tree("jump_statement",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2736 "y.tab.c"
+#line 2737 "y.tab.c"
     break;
 
   case 137:
-#line 660 "compiler.y"
+#line 661 "../yacc/compiler.y"
                              {
 		(yyval.gt) = create_tree("translation_unit",1,(yyvsp[0].gt));
 	}
-#line 2744 "y.tab.c"
+#line 2745 "y.tab.c"
     break;
 
   case 138:
-#line 663 "compiler.y"
+#line 664 "../yacc/compiler.y"
                                                 {
 		(yyval.gt) = create_tree("translation_unit",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2752 "y.tab.c"
+#line 2753 "y.tab.c"
     break;
 
   case 139:
-#line 669 "compiler.y"
+#line 670 "../yacc/compiler.y"
                             {
 		(yyval.gt) = create_tree("external_declaration",1,(yyvsp[0].gt));
 		//函数定义
 		//printf("function_definition");
 	}
-#line 2762 "y.tab.c"
+#line 2763 "y.tab.c"
     break;
 
   case 140:
-#line 674 "compiler.y"
+#line 675 "../yacc/compiler.y"
                       {
 		(yyval.gt) = create_tree("external_declaration",1,(yyvsp[0].gt));
 		//变量声明
 		//printf("declaration");
 	}
-#line 2772 "y.tab.c"
+#line 2773 "y.tab.c"
     break;
 
   case 141:
-#line 682 "compiler.y"
+#line 683 "../yacc/compiler.y"
                                                                       {
 		(yyval.gt) = create_tree("function_definition",4,(yyvsp[-3].gt),(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2780 "y.tab.c"
+#line 2781 "y.tab.c"
     break;
 
   case 142:
-#line 685 "compiler.y"
+#line 686 "../yacc/compiler.y"
                                                        {
 		(yyval.gt) = create_tree("function_definition",3,(yyvsp[-2].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2788 "y.tab.c"
+#line 2789 "y.tab.c"
     break;
 
   case 143:
-#line 691 "compiler.y"
+#line 692 "../yacc/compiler.y"
                     {
 		(yyval.gt) = create_tree("declaration_list",1,(yyvsp[0].gt));
 	}
-#line 2796 "y.tab.c"
+#line 2797 "y.tab.c"
     break;
 
   case 144:
-#line 694 "compiler.y"
+#line 695 "../yacc/compiler.y"
                                        {
 		(yyval.gt) = create_tree("declaration_list",2,(yyvsp[-1].gt),(yyvsp[0].gt));
 	}
-#line 2804 "y.tab.c"
+#line 2805 "y.tab.c"
     break;
 
 
-#line 2808 "y.tab.c"
+#line 2809 "y.tab.c"
 
       default: break;
     }
@@ -3036,7 +3037,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 699 "compiler.y"
+#line 700 "../yacc/compiler.y"
 
 
 
