@@ -2,7 +2,8 @@
 #include <cstdlib>
 #include <cstdio>
 #include <string>
-#include "tree.h"
+#include "../source/tree.h"
+// #include "../source/StaticFlags.h"
 
 using namespace std;
 
