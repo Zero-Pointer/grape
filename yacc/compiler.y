@@ -14,6 +14,8 @@ extern FILE * yyout;
 gramTree *root;
 extern int yylineno;
 
+auto* globalPtr = new TableNode();
+
 int yylex(void);
 void yyerror(const char*);
 %}
@@ -414,7 +416,6 @@ declarator:
 		$$ = create_tree("declarator",3,$1,$2,$3);
 	}
 	;
-
 
 //参数列表
 parameter_list:

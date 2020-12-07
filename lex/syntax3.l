@@ -6,7 +6,6 @@
 // will make error
 
 #include "../source/TableNode.h"
-auto* globalPtr = new TableNode();
 
 #include "y.tab.h"
 #include <cstdio>
@@ -28,7 +27,7 @@ letter	        [A-Za-z_]
 digit		    [0-9]
 FS			    (f|F|l|L)
 IS              ((u|U)|(u|U)?(l|L|ll|LL)|(l|L|ll|LL)(u|U))
-const_int       [1-9]{digit}*{IS}?
+const_int       [0-9]{digit}*{IS}?
 const_double    {digit}+(\.{digit}+)?(E[+-]?{digit}+)?
 id			    {letter}({letter}|{digit})*
 

@@ -13,10 +13,16 @@
 using namespace std;
 
 class TableNode {
+    static map<string, TableNode*> functionTable;
     map<string, int> charTable;
     TableNode *fatherNode = nullptr;
 
 public:
+
+    TableNode(){};
+
+    TableNode(TableNode const &target):charTable(target.charTable);
+
     int *isHave(string id);
 
     int *addChar(string id);
@@ -28,6 +34,10 @@ public:
     TableNode *deleteSelf();
 
     int *modifyValue(string id, int value);
+
+    TableNode* addFunction(string id);
+
+    TableNode* getFunction(string id);
 };
 
 
