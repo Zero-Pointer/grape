@@ -1,5 +1,9 @@
+void fun(int i){
+    print_int(i);
+}
 int main()
 {
+    int li[1][2];
     int a = 1, b = 2;
     int c = 2;
     int i = 0;

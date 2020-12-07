@@ -2,12 +2,15 @@
 
 #define _TREE_H_
 
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
-#include<cstdarg>
-#include<iostream>
-#include<string>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cstdarg>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <stack>
+#include <queue>
 #include "../source/StaticFlags.h"
 #define TYPE_BOOL 1
 extern char *yytext;
@@ -31,7 +34,7 @@ struct gramTree {
 extern struct gramTree *root;
 
 struct gramTree* create_tree(string name, int num,...);
-void eval(struct gramTree *head,int leavel);
+void eval(struct gramTree *head,int leavel, vector<int> fatherPos = vector<int>(1, 0));
 char* my_substring(char* s, int begin, int end);
 void freeGramTree(gramTree* node);
 string getValue(struct gramTree *head);
