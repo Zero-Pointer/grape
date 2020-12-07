@@ -21,7 +21,7 @@ public:
 
     TableNode(){};
 
-    TableNode(TableNode const &target):charTable(target.charTable);
+    TableNode(TableNode const &target):charTable(target.charTable){};
 
     int *isHave(string id);
 
