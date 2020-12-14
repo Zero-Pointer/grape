@@ -49,15 +49,15 @@ int *TableNode::modifyValue(string id, int value) {
     return temp;
 }
 
-TableNode *TableNode::addFunction(string id) {
-    if(functionTable.find(id) != functionTable.end())
-        return nullptr;
-    functionTable[id] = new TableNode();
-    return functionTable[id];
-}
-
-TableNode *TableNode::getFunction(string id) {
-    if(functionTable.find(id) == functionTable.end())
-        return nullptr;
-    return new TableNode(*functionTable[id]) ;
-}
+//TableNode *TableNode::addFunction(string id) {
+//    if(functionTable.find(id) != functionTable.end())
+//        return nullptr;
+//    functionTable[id] = new TableNode();
+//    return functionTable[id];
+//}
+//
+//TableNode *TableNode::getFunction(string id) {
+//    if(functionTable.find(id) == functionTable.end())
+//        return nullptr;
+//    return new TableNode(*functionTable[id]) ;
+//}
