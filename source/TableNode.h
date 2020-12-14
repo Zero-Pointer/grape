@@ -13,10 +13,9 @@
 using namespace std;
 
 class TableNode {
-    static map<string, TableNode*> functionTable;
     map<string, int> charTable;
     TableNode *fatherNode = nullptr;
-
+    static map<string, TableNode*> functionTable;
 public:
 
     TableNode(){};
