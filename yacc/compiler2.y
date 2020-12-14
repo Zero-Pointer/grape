@@ -16,6 +16,8 @@ gramTree *root;
 extern int yylineno;
 
 auto* globalPtr = new TableNode();
+ol waitFlag = false;
+
 
 int yylex(void);
 void yyerror(const char*);
@@ -704,7 +706,10 @@ declaration_list:
 	;
 
 child_block: {
-    globalPtr = globalPtr->addChild();
+    if(!waitFlag)
+        globalPtr = globalPtr->addChild();
+    else
+        waitFlag = !waitFlag;
 };
 father_block: {
     globalPtr = globalPtr->deleteSelf();

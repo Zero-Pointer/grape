@@ -49,6 +49,10 @@ int *TableNode::modifyValue(string id, int value) {
     return temp;
 }
 
+void TableNode::deleteChar(string id) {
+    charTable.erase(id);
+}
+
 //TableNode *TableNode::addFunction(string id) {
 //    if(functionTable.find(id) != functionTable.end())
 //        return nullptr;

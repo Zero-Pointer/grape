@@ -27,7 +27,10 @@ public:
 
     int *addChar(string id);
 
+    void deleteChar(string id);
+
     void addFather(TableNode *father);
+
 
     TableNode *addChild();
 
