@@ -605,7 +605,7 @@ static const char *const yytname[] =
   "block_item_list", "block_item", "expression_statement",
   "selection_statement", "iteration_statement", "jump_statement",
   "translation_unit", "external_declaration", "function_definition",
-  "declaration_list", "child_block", "child_block_fun", "father_block", YY_NULLPTR
+  "declaration_list", "child_block", "wait_block", "father_block", YY_NULLPTR
 };
 #endif
 
@@ -2257,7 +2257,7 @@ yyreduce:
 
   case 75:
 #line 419 "../yacc/compiler2.y"
-                                                            {
+                                                       {
 		//函数
 		(yyval.gt) = create_tree("declarator",4,(yyvsp[-4].gt),(yyvsp[-3].gt),(yyvsp[-1].gt),(yyvsp[0].gt));
 		globalPtr->deleteChar((yyvsp[-4].gt)->content);
@@ -2843,7 +2843,7 @@ yyreduce:
 
   case 146:
 #line 727 "../yacc/compiler2.y"
-                 {
+            {
 	globalPtr = globalPtr->addChild();
 	waitFlag = !waitFlag;
 }

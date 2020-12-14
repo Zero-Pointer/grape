@@ -54,7 +54,7 @@ void yyerror(const char*);
 %type <gt> selection_statement iteration_statement jump_statement translation_unit external_declaration function_definition
 %type <gt> declaration_list
 %type <gt> multiplicative_expression additive_expression relational_expression equality_expression
-%type <void> child_block father_block
+%type <void> child_block father_block wait_block
 
 %nonassoc LOWER_THAN_ELSE
 %nonassoc ELSE
@@ -416,7 +416,7 @@ declarator:
 		globalPtr->deleteChar($1->content);
 		cout << " delete " << $1->content << " in charTable" << endl;
 	}
-	| declarator '(' child_block_fun parameter_list ')' {
+	| declarator '(' wait_block parameter_list ')' {
 		//函数
 		$$ = create_tree("declarator",4,$1,$2,$4,$5);
 		globalPtr->deleteChar($1->content);
