@@ -401,26 +401,38 @@ declarator:
 		//数组
 		//printf("assignment_expression");
 		$$ = create_tree("declarator",4,$1,$2,$3,$4);
+		globalPtr->deleteChar($1->content);
+		cout << " delete " << $1->content << " in charTable" << endl;
 	}
 	| declarator '[' '*' ']' {
 		//....
 		$$ = create_tree("declarator",4,$1,$2,$3,$4);
+		globalPtr->deleteChar($1->content);
+		cout << " delete " << $1->content << " in charTable" << endl;
 	}
 	| declarator '[' ']' {
 		//数组
 		$$ = create_tree("declarator",3,$1,$2,$3);
+		globalPtr->deleteChar($1->content);
+		cout << " delete " << $1->content << " in charTable" << endl;
 	}
-	| declarator '(' parameter_list ')' {
+	| declarator '(' child_block_fun parameter_list ')' {
 		//函数
-		$$ = create_tree("declarator",4,$1,$2,$3,$4);
+		$$ = create_tree("declarator",4,$1,$2,$4,$5);
+		globalPtr->deleteChar($1->content);
+		cout << " delete " << $1->content << " in charTable" << endl;
 	}
 	| declarator '(' identifier_list ')' {
 		//函数
 		$$ = create_tree("declarator",4,$1,$2,$3,$4);
+		globalPtr->deleteChar($1->content);
+		cout << " delete " << $1->content << " in charTable" << endl;
 	}
 	| declarator '(' ')' {
 		//函数
 		$$ = create_tree("declarator",3,$1,$2,$3);
+		globalPtr->deleteChar($1->content);
+		cout << " delete " << $1->content << " in charTable" << endl;
 	}
 	;
 
@@ -711,6 +723,12 @@ child_block: {
     else
         waitFlag = !waitFlag;
 };
+
+wait_block: {
+	globalPtr = globalPtr->addChild();
+	waitFlag = !waitFlag;
+};
+
 father_block: {
     globalPtr = globalPtr->deleteSelf();
 };
@@ -732,7 +750,7 @@ int main(int argc,char* argv[]) {
 	// freopen("output/output.txt","w", stdout);
 	yyparse();
 	printf("\n");
-	eval(root,0);	//输出语法分析树
+	// eval(root,0);	//输出语法分析树
 	freeGramTree(root);
 	fclose(yyin);
 	return 0;
