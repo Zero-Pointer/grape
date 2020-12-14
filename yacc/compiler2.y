@@ -724,7 +724,7 @@ child_block: {
         waitFlag = !waitFlag;
 };
 
-child_block_fun: {
+wait_block: {
 	globalPtr = globalPtr->addChild();
 	waitFlag = !waitFlag;
 };
