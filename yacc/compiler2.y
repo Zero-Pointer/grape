@@ -16,7 +16,7 @@ gramTree *root;
 extern int yylineno;
 
 auto* globalPtr = new TableNode();
-ol waitFlag = false;
+bool waitFlag = false;
 
 
 int yylex(void);

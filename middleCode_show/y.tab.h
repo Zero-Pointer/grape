@@ -89,7 +89,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 24 "../yacc/compiler2.y"
+#line 26 "../yacc/compiler2.y"
 
 	struct gramTree* gt;
 
