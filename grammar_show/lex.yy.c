@@ -619,7 +619,6 @@ char *yytext;
 // will make error
 
 #include "../source/TableNode.h"
-auto* globalPtr = new TableNode();
 
 #include "y.tab.h"
 #include <cstdio>
@@ -631,12 +630,12 @@ using namespace std;
 
 void count(void);
 int column = 0;
-#line 635 "lex.yy.c"
+#line 634 "lex.yy.c"
 /* 状态（或条件）定义可以定义在这里
  * INITIAL是一个默认的状态，不需要定义
  */
 
-#line 640 "lex.yy.c"
+#line 639 "lex.yy.c"
 
 #define INITIAL 0
 #define COMMENT 1
@@ -855,9 +854,9 @@ YY_DECL
 		}
 
 	{
-#line 40 "../lex/syntax3.l"
+#line 39 "../lex/syntax3.l"
 
-#line 861 "lex.yy.c"
+#line 860 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -926,313 +925,313 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 41 "../lex/syntax3.l"
+#line 40 "../lex/syntax3.l"
 {BEGIN INITIAL;}
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 42 "../lex/syntax3.l"
+#line 41 "../lex/syntax3.l"
 {;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 43 "../lex/syntax3.l"
+#line 42 "../lex/syntax3.l"
 {BEGIN COMMENT2;}
 	YY_BREAK
 case 4:
 /* rule 4 can match eol */
 YY_RULE_SETUP
-#line 44 "../lex/syntax3.l"
+#line 43 "../lex/syntax3.l"
 {BEGIN INITIAL;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 45 "../lex/syntax3.l"
+#line 44 "../lex/syntax3.l"
 {;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 47 "../lex/syntax3.l"
+#line 46 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("IF",0,yylineno); return (IF);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 48 "../lex/syntax3.l"
+#line 47 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("ELSE",0,yylineno); return (ELSE);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 49 "../lex/syntax3.l"
+#line 48 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("WHILE",0,yylineno); return (WHILE);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 50 "../lex/syntax3.l"
+#line 49 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("DO",0,yylineno); return (DO);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 51 "../lex/syntax3.l"
+#line 50 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("FOR",0,yylineno); return (FOR);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 52 "../lex/syntax3.l"
+#line 51 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("CONTINUE",0,yylineno); return (CONTINUE);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 53 "../lex/syntax3.l"
+#line 52 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("BREAK",0,yylineno); return (BREAK);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 54 "../lex/syntax3.l"
+#line 53 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("RETURN",0,yylineno); return (RETURN);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 55 "../lex/syntax3.l"
+#line 54 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("CHAR",0,yylineno); return (CHAR);}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 56 "../lex/syntax3.l"
+#line 55 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("INT",0,yylineno); return (INT);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 57 "../lex/syntax3.l"
+#line 56 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("DOUBLE",0,yylineno); return (DOUBLE);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 58 "../lex/syntax3.l"
+#line 57 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("VOID",0,yylineno); return (VOID);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 59 "../lex/syntax3.l"
+#line 58 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("BOOL",0,yylineno); return (BOOL);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 60 "../lex/syntax3.l"
+#line 59 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("TRUE",0,yylineno); return (TRUE);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 61 "../lex/syntax3.l"
+#line 60 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("FALSE",0,yylineno); return (FALSE);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 62 "../lex/syntax3.l"
+#line 61 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("CONSTANT_INT",0,yylineno); return (CONSTANT_INT);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 63 "../lex/syntax3.l"
+#line 62 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("CONSTANT_DOUBLE",0,yylineno); return (CONSTANT_DOUBLE);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 65 "../lex/syntax3.l"
+#line 64 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("IDENTIFIER",0,yylineno); return (IDENTIFIER);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 67 "../lex/syntax3.l"
+#line 66 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("SUB_ASSIGN",0,yylineno); return (SUB_ASSIGN);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 68 "../lex/syntax3.l"
+#line 67 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("ADD_ASSIGN",0,yylineno); return (ADD_ASSIGN);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 69 "../lex/syntax3.l"
+#line 68 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("DIV_ASSIGN",0,yylineno); return (DIV_ASSIGN);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 70 "../lex/syntax3.l"
+#line 69 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("MUL_ASSIGN",0,yylineno); return (MUL_ASSIGN);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 71 "../lex/syntax3.l"
+#line 70 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("AND_OP",0,yylineno); return (AND_OP);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 72 "../lex/syntax3.l"
+#line 71 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("OR_OP",0,yylineno); return (OR_OP);}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 73 "../lex/syntax3.l"
+#line 72 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("INC_OP",0,yylineno); return (INC_OP);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 74 "../lex/syntax3.l"
+#line 73 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("DEC_OP",0,yylineno); return (DEC_OP);}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 75 "../lex/syntax3.l"
+#line 74 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("LE_OP",0,yylineno); return (LE_OP);}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 76 "../lex/syntax3.l"
+#line 75 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("GE_OP",0,yylineno); return (GE_OP);}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 77 "../lex/syntax3.l"
+#line 76 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("EQ_OP",0,yylineno); return (EQ_OP);}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 78 "../lex/syntax3.l"
+#line 77 "../lex/syntax3.l"
 {count(); yylval.gt =create_tree("NE_OP",0,yylineno); return (NE_OP);}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 80 "../lex/syntax3.l"
+#line 79 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree(";",0,yylineno);	return(';'); }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 81 "../lex/syntax3.l"
+#line 80 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree(",",0,yylineno);	return(','); }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 82 "../lex/syntax3.l"
+#line 81 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree(":",0,yylineno);	return(':'); }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 83 "../lex/syntax3.l"
+#line 82 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree("=",0,yylineno);	return('='); }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 84 "../lex/syntax3.l"
+#line 83 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree("[",0,yylineno);	return('['); }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 85 "../lex/syntax3.l"
+#line 84 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree("]",0,yylineno);	return(']'); }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 86 "../lex/syntax3.l"
+#line 85 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree(".",0,yylineno);	return('.'); }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 87 "../lex/syntax3.l"
+#line 86 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree("&",0,yylineno);	return('&'); }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 88 "../lex/syntax3.l"
+#line 87 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree("!",0,yylineno);	return('!'); }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 89 "../lex/syntax3.l"
+#line 88 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree("~",0,yylineno);	return('~'); }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 90 "../lex/syntax3.l"
+#line 89 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree("-",0,yylineno);	return('-'); }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 91 "../lex/syntax3.l"
+#line 90 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree("+",0,yylineno);	return('+'); }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 92 "../lex/syntax3.l"
+#line 91 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree("*",0,yylineno);	return('*'); }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 93 "../lex/syntax3.l"
+#line 92 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree("/",0,yylineno);	return('/'); }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 94 "../lex/syntax3.l"
+#line 93 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree("%",0,yylineno);	return('%'); }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 95 "../lex/syntax3.l"
+#line 94 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree("<",0,yylineno);	return('<'); }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 96 "../lex/syntax3.l"
+#line 95 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree(">",0,yylineno);	return('>'); }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 97 "../lex/syntax3.l"
+#line 96 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree("^",0,yylineno);	return('^'); }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 98 "../lex/syntax3.l"
+#line 97 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree("|",0,yylineno);	return('|'); }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 99 "../lex/syntax3.l"
+#line 98 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree("?",0,yylineno);	return('?'); }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 100 "../lex/syntax3.l"
+#line 99 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree("{",0,yylineno);	return('{'); }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 101 "../lex/syntax3.l"
+#line 100 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree("}",0,yylineno);	return('}'); }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 102 "../lex/syntax3.l"
+#line 101 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree("(",0,yylineno);	return('('); }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 103 "../lex/syntax3.l"
+#line 102 "../lex/syntax3.l"
 { count(); yylval.gt =create_tree(")",0,yylineno);	return(')'); }
 	YY_BREAK
 case 60:
 /* rule 60 can match eol */
 YY_RULE_SETUP
-#line 104 "../lex/syntax3.l"
+#line 103 "../lex/syntax3.l"
 { count();}
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 107 "../lex/syntax3.l"
+#line 106 "../lex/syntax3.l"
 ECHO;
 	YY_BREAK
-#line 1236 "lex.yy.c"
+#line 1235 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(COMMENT):
 case YY_STATE_EOF(COMMENT2):
@@ -2251,7 +2250,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 107 "../lex/syntax3.l"
+#line 106 "../lex/syntax3.l"
 
 void count(void)
 {

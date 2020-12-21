@@ -390,7 +390,8 @@ declarator:
 		$$ = create_tree("declarator",1,$1);
 		int* valuePtr = globalPtr->addChar($1->content);
         if(valuePtr == nullptr){
-            cout<<"Redefined"<<endl;
+            yyerror("Redefined");
+            exit(1);
         }
 	}
 	| '(' declarator ')' {
@@ -402,37 +403,37 @@ declarator:
 		//printf("assignment_expression");
 		$$ = create_tree("declarator",4,$1,$2,$3,$4);
 		globalPtr->deleteChar($1->content);
-		cout << " delete " << $1->content << " in charTable" << endl;
+		//cout << " delete " << $1->content << " in charTable" << endl;
 	}
 	| declarator '[' '*' ']' {
 		//....
 		$$ = create_tree("declarator",4,$1,$2,$3,$4);
 		globalPtr->deleteChar($1->content);
-		cout << " delete " << $1->content << " in charTable" << endl;
+		//cout << " delete " << $1->content << " in charTable" << endl;
 	}
 	| declarator '[' ']' {
 		//数组
 		$$ = create_tree("declarator",3,$1,$2,$3);
 		globalPtr->deleteChar($1->content);
-		cout << " delete " << $1->content << " in charTable" << endl;
+		//cout << " delete " << $1->content << " in charTable" << endl;
 	}
 	| declarator '(' wait_block parameter_list ')' {
 		//函数
 		$$ = create_tree("declarator",4,$1,$2,$4,$5);
 		globalPtr->deleteChar($1->content);
-		cout << " delete " << $1->content << " in charTable" << endl;
+		//cout << " delete " << $1->content << " in charTable" << endl;
 	}
 	| declarator '(' identifier_list ')' {
 		//函数
 		$$ = create_tree("declarator",4,$1,$2,$3,$4);
 		globalPtr->deleteChar($1->content);
-		cout << " delete " << $1->content << " in charTable" << endl;
+		//cout << " delete " << $1->content << " in charTable" << endl;
 	}
 	| declarator '(' ')' {
 		//函数
 		$$ = create_tree("declarator",3,$1,$2,$3);
 		globalPtr->deleteChar($1->content);
-		cout << " delete " << $1->content << " in charTable" << endl;
+		//cout << " delete " << $1->content << " in charTable" << endl;
 	}
 	;
 
@@ -751,7 +752,7 @@ int main(int argc,char* argv[]) {
 
 	yyin = fopen(argv[1],"r");
 
-	// freopen("output/output.txt","w", stdout);
+	freopen("output.txt","w", stdout);
 	yyparse();
 	printf("\n");
 	//eval(root,0);
