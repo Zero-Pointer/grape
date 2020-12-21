@@ -13,5 +13,6 @@ int main()
     while (a < 40) {
         a = a + 1;
     }
+    print(a);
     return 0;
 }
