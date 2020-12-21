@@ -6,8 +6,9 @@ int main()
     int li[1][2];
     int a = 1, b = 2, a;
     int c = 2;
-    int i = 0;
-    for (i = 0; i < 10; i = i + 1) {
+
+    for (int i = 0; i < 10; i = i + 1) {
+        int i =10;
         if (a < 5) a = a + 1;
         else if (a >= 5) {
             a = a + 2;
