@@ -1,0 +1,55 @@
+(FUNCTION, main, {}, _)
+(=, #2, _, temp0)
+(=, #4, _, temp2)
+(*, temp2, temp0, temp1)
+(DEC, temp1, _, array0)
+(=, #1, _, temp3)
+(=, temp3, _, var0)
+(=, #2, _, temp4)
+(=, temp4, _, var1)
+(=, #2, _, temp5)
+(=, temp5, _, var2)
+(=, #0, _, temp6)
+(=, temp6, _, var3)
+(=, #0, _, temp7)
+(=, temp7, _, var3)
+LABEL label0 :
+(=, #10, _, temp8)
+(j<, var3, temp8, label1)
+(j, _, _, label2)
+LABEL label1 :
+(=, #5, _, temp10)
+(j<, var0, temp10, label3)
+(j, _, _, label4)
+LABEL label3 :
+(=, #1, _, temp12)
+(+, var0, temp12, temp13)
+(=, temp13, _, var0)
+(j, _, _, label5)
+LABEL label4 :
+(=, #5, _, temp14)
+(j>=, var0, temp14, label6)
+(j, _, _, label7)
+LABEL label6 :
+(=, #2, _, temp16)
+(+, var0, temp16, temp17)
+(=, temp17, _, var0)
+LABEL label7 :
+LABEL label5 :
+(=, #1, _, temp18)
+(+, var3, temp18, temp19)
+(=, temp19, _, var3)
+(j, _, _, label0)
+LABEL label2 :
+LABEL label8 :
+(=, #40, _, temp20)
+(j<, var0, temp20, label9)
+(j, _, _, label10)
+LABEL label9 :
+(=, #1, _, temp22)
+(+, var0, temp22, temp23)
+(=, temp23, _, var0)
+(j, _, _, label8)
+LABEL label10 :
+(=, #0, _, temp24)
+(RETURN, _, _, temp24)
