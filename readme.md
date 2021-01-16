@@ -56,7 +56,116 @@ java -jar Mars4_5.jar
 
 在 Mars 中运行 result.asm 文件
 
-## 中间代码格式
+## 项目架构
+![Image text](./source/p1.png)
+
+## 主要思路
+#### 词法分析
+
+lex: syntax3.l
+
+这里把待测试文件看成一个字符串，分离出一个个token，然后返回对应的值，同时也会得到关键字的所在行数便于查找
+```
+if               {count(); yylval.gt =create_tree("IF",0,yylineno); return (IF);}
+else             {count(); yylval.gt =create_tree("ELSE",0,yylineno); return (ELSE);}
+while            {count(); yylval.gt =create_tree("WHILE",0,yylineno); return (WHILE);}
+do               {count(); yylval.gt =create_tree("DO",0,yylineno); return (DO);}
+for              {count(); yylval.gt =create_tree("FOR",0,yylineno); return (FOR);}
+continue         {count(); yylval.gt =create_tree("CONTINUE",0,yylineno); return (CONTINUE);}
+break            {count(); yylval.gt =create_tree("BREAK",0,yylineno); return (BREAK);}
+return           {count(); yylval.gt =create_tree("RETURN",0,yylineno); return (RETURN);}
+char             {count(); yylval.gt =create_tree("CHAR",0,yylineno); return (CHAR);}
+int              {count(); yylval.gt =create_tree("INT",0,yylineno); return (INT);}
+double           {count(); yylval.gt =create_tree("DOUBLE",0,yylineno); return (DOUBLE);}
+void             {count(); yylval.gt =create_tree("VOID",0,yylineno); return (VOID);}
+bool             {count(); yylval.gt =create_tree("BOOL",0,yylineno); return (BOOL);}
+true             {count(); yylval.gt =create_tree("TRUE",0,yylineno); return (TRUE);}
+false            {count(); yylval.gt =create_tree("FALSE",0,yylineno); return (FALSE);}
+{const_int}      {count(); yylval.gt =create_tree("CONSTANT_INT",0,yylineno); return (CONSTANT_INT);}
+{const_double}   {count(); yylval.gt =create_tree("CONSTANT_DOUBLE",0,yylineno); return (CONSTANT_DOUBLE);}
+```
+
+正规定义:
+```
+delim           [ \t \n]
+ws              {delim}+
+letter          [A-Za-z_]
+digit           [0-9]
+FS              (f|F|l|L)
+I               ((u|U)|(u|U)?(l|L|ll|LL)|(l|L|ll|LL)(u|U))
+const_int       [0-9]{digit}*{IS}?
+const_double    {digit}+(\.{digit}+)?(E[+-]?{digit}+)?
+id              {letter}({letter}|{digit})*
+```
+
+#### 语法分析
+定义tree.cpp，通过文法和其他规则建立语法树
+
+创建compiler3.y文件建立树结构
+```
+//循环语句
+iteration_statement:
+	WHILE '(' expression ')' statement {
+		$$ = create_tree("iteration_statement",5,$1,$2,$3,$4,$5);
+	}
+	| DO statement WHILE '(' expression ')' ';' {
+		$$ = create_tree("iteration_statement",7,$1,$2,$3,$4,$5,$6,$7);
+	}
+	| FOR wait_block  '(' expression_statement expression_statement ')' statement {
+		$$ = create_tree("iteration_statement",6,$1,$3,$4,$5,$6,$7);
+		printf("open  space");
+	}
+	| FOR wait_block  '(' expression_statement expression_statement expression ')' statement {
+		$$ = create_tree("iteration_statement",7,$1,$3,$4,$5,$6,$7,$8);
+		printf("open  space");
+	}
+	| FOR wait_block  '(' declaration expression_statement ')' statement {
+		$$ = create_tree("iteration_statement",6,$1,$3,$4,$5,$6,$7);
+		printf("open  space");
+	}
+	| FOR wait_block  '(' declaration expression_statement expression ')' statement {
+		$$ = create_tree("iteration_statement",7,$1,$3,$4,$5,$6,$7,$8);
+		printf("open  space");
+	}
+	;
+```
+
+#### 符号表
+建立 TableNode.cpp 文件
+```c++
+int *TableNode::isHave(string id)               //检测是否存在该id
+void TableNode::addFather(TableNode *father)    //提供父亲节点
+TableNode *TableNode::addChild()                //开辟子空间、孩子节点用于新的内存分配
+TableNode *TableNode::deleteSelf()              //关闭子空间，返回父亲节点
+int *TableNode::addChar(string id)              //给id分配空间
+TableNode *TableNode::addFunction(string id)    //用于增加一个函数的根符号表
+TableNode *TableNode::getFunction               //获得一个函数根符号表的拷贝
+```
+
+#### 中间代码生成
+根据下列S语言的语法规则，从左到右扫描表达式，翻译S语言，生成中间代码
+- <程序>→[<常量说明>][<变量说明>]<语句>
+- <常量说明>→Const <常量定义>{，<常量定义>}；
+- <常量定义>→<标识符>＝<无符号整数>
+- <无符号整数>→<数字>{<数字>}
+- <字母>→a|b|c| … |z
+- <数字>→0|1|2| … |9
+- <标识符>→<字母>{<字母>|<数字>}
+- <变量说明>→Var <标识符>{，<标识符>}；
+- <语句>→<赋值语句>|<条件语句>|<当循环语句>|<复合语句>|ε
+- <赋值语句>→<标识符>＝<表达式>;
+- <表达式>→[＋|－]<项>{<加法运算符><项>}
+- <项>→<因子>{<乘法运算符><因子>}
+- <因子>→<标识符>|<无符号整数>|‘(’<表达式>‘)’
+- <加法运算符>→＋|－
+- <乘法运算符>→* |／
+- <条件语句>→if <条件> then <语句>| if <条件> then <语句> else <语句>
+- <条件>→<表达式><关系运算符><表达式>
+- <关系运算符>→＝＝|＜＝|＜|＞|＞＝|＜＞
+- <当循环语句>→while <条件> do <语句>
+- <复合语句>→begin <语句>{；<语句>} end
+
+#### 中间代码格式
 | 语法  | 描述 |
 | :---: | :---- |
 | x := y | 赋值操作，将变量 y 赋值给 x | 
@@ -76,5 +185,47 @@ java -jar Mars4_5.jar
 | CALL f | 调用函数 f | 
 | PARAM x | 函数形参声明 | 
 
-## 项目架构
-[Alt text](./source/p1.png)
+#### 代码优化
+消除全局公共子表达式
+```c++
+class Optimize
+{
+    private:
+        vector<string> codelist;
+        map<string, Message> tempMessage;
+        void establishMap(vector<string>&);         //建立temp和次数，行数的map
+        void dropTrumpTemp(vector<string>&);        //除去无用的临时变量(全局公共子表达式)
+    
+    public:
+        Optimize(vector<string>);
+        vector<string> getCodeList();
+};
+```
+
+#### 汇编程序
+建立objectcode.py文件
+
+建立函数
+```
+Load_Var(Inter):        #  找到所有须用寄存器替代的变量
+Load_Inter(filename):   # 分割生成的中间代码，将每行代码转成一个存储各个关键字的列表
+Get_R(string):          # 为variables中的变量分配寄存器
+def write_to_txt(Obj):  # 将最终转换结果写到result.asm文件中
+translate(line)         # 给元素赋值、进行数组操作、传参
+```
+
+转换的程序入口
+```
+def parser():
+    for reg in regs:
+        reg_ok[reg] = 1                 # 初始化，所有寄存器都可用
+    Inter = Load_Inter('inter.txt')     # 读取中间代码
+    Load_Var(Inter)                     # 第一遍扫描，记录所有变量
+    Obj = []                            # 存储最终转换结果
+    for line in Inter:                  # 逐行进行转换
+        obj_line = translate(line)      # 转换中间代码成MIPS汇编
+        if obj_line == '':
+            continue
+        Obj.append(obj_line)
+    write_to_txt(Obj)
+```
