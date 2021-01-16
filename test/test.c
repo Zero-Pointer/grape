@@ -1,6 +1,6 @@
 int fun(int p)
 {
-    q = p * p;
+    int q = p * p;
     return q;
 }
 

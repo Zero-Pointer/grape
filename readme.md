@@ -28,26 +28,21 @@
 工具：Mars（汇编器）
 
 #### 中间代码生成
-运行 middleCode_show 文件夹下的 order.sh
+运行 test 文件夹下的 order.sh
 ```
-flex ../lex/syntax3.l
+flex syntax3.l
 echo "Flex Over"
-bison -o y.tab.c ../yacc/compiler3.y
-echo "y.tab.c Over"
-bison -o y.tab.h ../yacc/compiler3.y -d
-echo "y.tab.h Over"
-g++ -std=c++11 -o compiler ../source/tree.cpp ../source/TableNode.cpp lex.yy.c y.tab.c
+bison -vdty compiler2.y
+echo "Yacc Over"
+g++ -std=c++11 -o compiler ../source/TableNode.cpp tree.cpp Praser.cpp innerCode.cpp tools.cpp codeOptimize.cpp lex.yy.c y.tab.c
 echo "compiler Over"
 ./compiler test.c
-
-echo
-cat output.txt
 ```
 
 #### 目标代码生成
 运行 mips 文件夹下的 order.sh
 ```
-cp ../test/middleCode.txt inter.txt
+cp ../test/innerCode.txt inter.txt
 python3 objectcode.py
 java -jar Mars4_5.jar
 ```
@@ -57,12 +52,11 @@ java -jar Mars4_5.jar
 在 Mars 中运行 result.asm 文件
 
 ## 测试
-测试者可以选择更改 /middleCode_show/order.sh 第九行中的测试文件名，来修改测试文件（默认test.c）
+测试者可以选择更改 /test/order.sh 第7行中的测试文件名，来修改测试文件（默认test.c）
 
-- test.c: 
-- test1.c: 
-- test2.c: 
-- test3.c: 
+- test.c: 支持了实验的全部基本要求，以及二维数组计算和函数调用
+- test1.c: 符号表的重定义和错误分析
+- test2.c: 类型检查和错误分析
 
 ## 项目架构
 ![Image text](./source/p1.png)

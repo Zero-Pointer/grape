@@ -2,7 +2,7 @@
 #define _PRASER_H_
 #include "block.h"
 #include "tree.h"
-#include "innerCode.h"
+#include "middleCode.h"
 #include <vector>
 #include <set>
 
