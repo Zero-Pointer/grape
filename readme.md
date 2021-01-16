@@ -56,6 +56,14 @@ java -jar Mars4_5.jar
 
 在 Mars 中运行 result.asm 文件
 
+## 测试
+测试者可以选择更改 /middleCode_show/order.sh 第九行中的测试文件名，来修改测试文件（默认test.c）
+
+- test.c: 
+- test1.c: 
+- test2.c: 
+- test3.c: 
+
 ## 项目架构
 ![Image text](./source/p1.png)
 
@@ -65,7 +73,8 @@ java -jar Mars4_5.jar
 lex: syntax3.l
 
 这里把待测试文件看成一个字符串，分离出一个个token
-返回对应的值，同时也会得到关键字的所在行数便于查找
+
+然后返回对应的值，同时也会得到关键字的所在行数便于查找
 ```
 if               {count(); yylval.gt =create_tree("IF",0,yylineno); return (IF);}
 else             {count(); yylval.gt =create_tree("ELSE",0,yylineno); return (ELSE);}
@@ -103,6 +112,8 @@ id              {letter}({letter}|{digit})*
 定义tree.cpp，通过文法和其他规则建立语法树
 
 创建compiler3.y文件建立树结构
+
+e.g.
 ```
 //循环语句
 iteration_statement:
@@ -204,8 +215,6 @@ class Optimize
 ```
 
 #### 汇编程序
-建立objectcode.py文件
-
 建立函数
 ```
 Load_Var(Inter)         #  找到所有须用寄存器替代的变量
