@@ -2,7 +2,7 @@
 
 一个简单的C语言编译器
 
-- 项目介绍：这是一个编译原理大作业
+- 项目介绍：这是一个编译原理的大作业
 - 团队成员：陈钰鼎、柳鑫、孟程昊、秦寅畅、祝鹏天
 - 完成时间：2020.12.28
 
@@ -64,7 +64,8 @@ java -jar Mars4_5.jar
 
 lex: syntax3.l
 
-这里把待测试文件看成一个字符串，分离出一个个token，然后返回对应的值，同时也会得到关键字的所在行数便于查找
+这里把待测试文件看成一个字符串，分离出一个个token
+返回对应的值，同时也会得到关键字的所在行数便于查找
 ```
 if               {count(); yylval.gt =create_tree("IF",0,yylineno); return (IF);}
 else             {count(); yylval.gt =create_tree("ELSE",0,yylineno); return (ELSE);}
@@ -133,13 +134,13 @@ iteration_statement:
 #### 符号表
 建立 TableNode.cpp 文件
 ```c++
-int *TableNode::isHave(string id)               //检测是否存在该id
-void TableNode::addFather(TableNode *father)    //提供父亲节点
-TableNode *TableNode::addChild()                //开辟子空间、孩子节点用于新的内存分配
-TableNode *TableNode::deleteSelf()              //关闭子空间，返回父亲节点
-int *TableNode::addChar(string id)              //给id分配空间
-TableNode *TableNode::addFunction(string id)    //用于增加一个函数的根符号表
-TableNode *TableNode::getFunction               //获得一个函数根符号表的拷贝
+int *TableNode::isHave(string id);               //检测是否存在该id
+void TableNode::addFather(TableNode *father);    //提供父亲节点
+TableNode *TableNode::addChild();                //开辟子空间、孩子节点用于新的内存分配
+TableNode *TableNode::deleteSelf();              //关闭子空间，返回父亲节点
+int *TableNode::addChar(string id);              //给id分配空间
+TableNode *TableNode::addFunction(string id);    //用于增加一个函数的根符号表
+TableNode *TableNode::getFunction;               //获得一个函数根符号表的拷贝
 ```
 
 #### 中间代码生成
@@ -207,10 +208,10 @@ class Optimize
 
 建立函数
 ```
-Load_Var(Inter):        #  找到所有须用寄存器替代的变量
-Load_Inter(filename):   # 分割生成的中间代码，将每行代码转成一个存储各个关键字的列表
-Get_R(string):          # 为variables中的变量分配寄存器
-def write_to_txt(Obj):  # 将最终转换结果写到result.asm文件中
+Load_Var(Inter)         #  找到所有须用寄存器替代的变量
+Load_Inter(filename)    # 分割生成的中间代码，将每行代码转成一个存储各个关键字的列表
+Get_R(string)           # 为variables中的变量分配寄存器
+def write_to_txt(Obj)   # 将最终转换结果写到result.asm文件中
 translate(line)         # 给元素赋值、进行数组操作、传参
 ```
 
