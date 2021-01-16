@@ -1,5 +1,5 @@
-#include "innerCode.h"
-#include "codeOptimize.h"
+#include "middleCode.h"
+#include "Optimize.h"
 #include "tools.h"
 #include <fstream>
 
@@ -15,7 +15,7 @@ void InnerCode::printCode() {
 
     Optimize optimize(codeList);
     codeList = optimize.getCodeList();
-    ofstream out("innerCode.txt");
+    ofstream out("middleCode.txt");
     cout << "\n===============INNERCODE===============" << endl;
     for (string s : codeList) {
         cout << s << endl;
