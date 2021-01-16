@@ -34,7 +34,7 @@ flex syntax3.l
 echo "Flex Over"
 bison -vdty compiler2.y
 echo "Yacc Over"
-g++ -std=c++11 -o compiler ../source/TableNode.cpp tree.cpp Praser.cpp innerCode.cpp tools.cpp codeOptimize.cpp lex.yy.c y.tab.c
+g++ -std=c++11 -o compiler ../source/TableNode.cpp tree.cpp Praser.cpp middleCode.cpp tools.cpp Optimize.cpp lex.yy.c y.tab.c
 echo "compiler Over"
 ./compiler test.c
 ```
@@ -105,7 +105,7 @@ id              {letter}({letter}|{digit})*
 #### 语法分析
 定义tree.cpp，通过文法和其他规则建立语法树
 
-创建compiler2.y文件建立树结构
+创建compiler2.y文件，建立树结构
 
 e.g.
 ```
