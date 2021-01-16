@@ -105,7 +105,7 @@ id              {letter}({letter}|{digit})*
 #### 语法分析
 定义tree.cpp，通过文法和其他规则建立语法树
 
-创建compiler3.y文件建立树结构
+创建compiler2.y文件建立树结构
 
 e.g.
 ```
