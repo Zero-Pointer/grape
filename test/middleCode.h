@@ -4,8 +4,8 @@
 #include <iostream>
 #include "tree.h"
 #include "block.h"
-#include "codeOptimize.h"
-#include<string>
+#include "Optimize.h"
+#include <string>
 extern struct gramTree* root;
 
 using namespace std;

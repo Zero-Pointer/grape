@@ -1,5 +1,5 @@
-#include "innerCode.h"
-#include "codeOptimize.h"
+#include "middleCode.h"
+#include "Optimize.h"
 #include "tools.h"
 #include <fstream>
 
@@ -15,7 +15,7 @@ void InnerCode::printCode() {
 
     Optimize optimize(codeList);
     codeList = optimize.getCodeList();
-    ofstream out("innerCode.txt");
+    ofstream out("middleCode.txt");
     cout << "\n===============INNERCODE===============" << endl;
     for (string s : codeList) {
         cout << s << endl;
@@ -25,7 +25,7 @@ void InnerCode::printCode() {
 
 string InnerCode::createCodeforVar(string tempname, string op, varNode node1, varNode node2) {
     string result = "("+op+", ";
-    
+
     if (node1.useAddress) {
         result += "*" + node1.name;
     }
@@ -35,7 +35,7 @@ string InnerCode::createCodeforVar(string tempname, string op, varNode node1, va
         }
         else result += "var" + inttostr(node1.num);
     }
-    
+
     result += ", ";
 
     if (node2.useAddress) {
@@ -100,14 +100,14 @@ string InnerCode::createCodeforArgument(varNode node) {
     string result = "";
     if (node.useAddress) {
         result += "*" + node.name;
-    } 
+    }
     else {
         if (node.num < 0) {
             result += node.name;
         }
         else result += "var" + inttostr(node.num);
     }
-    
+
     return result;
 }
 
